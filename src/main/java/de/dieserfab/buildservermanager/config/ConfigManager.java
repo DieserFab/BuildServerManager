@@ -11,9 +11,11 @@ public class ConfigManager {
     private MapsConfig mapsConfig;
 
     public ConfigManager(){
+        Logger.l("iLoading Config files");
         try {
             BSM.getInstance().saveDefaultConfig();
             this.mapsConfig = new MapsConfig();
+            Logger.l("iSucessfully loaded the Config files");
         }catch (Exception e){
             Logger.l("eError while loading and caching the config files:"+e.getMessage());
         }

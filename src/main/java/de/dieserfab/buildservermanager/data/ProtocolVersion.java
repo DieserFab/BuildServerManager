@@ -1,5 +1,6 @@
 package de.dieserfab.buildservermanager.data;
 
+import de.dieserfab.buildservermanager.utilities.Logger;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 
@@ -24,6 +25,7 @@ public enum ProtocolVersion {
         String protocolVersion = Bukkit.getServer().getClass().getPackage().getName().replace("org.bukkit.craftbukkit", "").replace(".", "");
         for (ProtocolVersion version : values()) {
             if (version.getIdentifier().equalsIgnoreCase(protocolVersion)) {
+                Logger.l("iSet the Serverversion to interprete to:" + version.getIdentifier());
                 serverVersion = version.getVersion();
                 return version;
             }

@@ -1,6 +1,7 @@
 package de.dieserfab.buildservermanager.commands;
 
 import de.dieserfab.buildservermanager.commands.cmds.MapsCMD;
+import de.dieserfab.buildservermanager.utilities.Logger;
 
 public class CommandManager {
 
@@ -9,7 +10,13 @@ public class CommandManager {
      * accessed directly
      */
     public CommandManager(){
-        new MapsCMD();
+        Logger.l("iLoading all Commands");
+        try {
+            new MapsCMD();
+            Logger.l("iSuccessfully loaded all Commands.");
+        }catch (Exception e){
+            Logger.l("eError while loading all Commands:"+e.getMessage());
+        }
     }
 
 }

@@ -23,12 +23,14 @@ public class GuiManager {
     private HashMap<Player, AbstractGui> currentGuis;
 
     public GuiManager() {
+        Logger.l("iLoading all GUIs");
         this.guis = new ArrayList<>();
         this.currentGuis = new HashMap<>();
         try {
             this.guis.add(new MainMenu());
             this.guis.add(new DomainMenu());
             this.guis.add(new PlayersMenu());
+            Logger.l("iSuccessfully loaded all GUIS");
         } catch (Exception e) {
             Logger.l("eError while loading the Guis:" + e.getMessage());
         }

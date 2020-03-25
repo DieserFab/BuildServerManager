@@ -1,6 +1,7 @@
 package de.dieserfab.buildservermanager.mapselector;
 
 import de.dieserfab.buildservermanager.api.BSMAPI;
+import de.dieserfab.buildservermanager.utilities.Logger;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,8 +13,14 @@ public class DomainManager {
     private List<Domain> domains;
 
     public DomainManager() {
-        this.domains = new ArrayList<>();
-        cacheDomains();
+        Logger.l("iCaching all Domains");
+        try {
+            this.domains = new ArrayList<>();
+            cacheDomains();
+            Logger.l("iSuccessfully cached all Domains");
+        }catch (Exception e){
+            Logger.l("eError while caching the Domains:"+e.getMessage());
+        }
     }
 
     public Domain getDomain(String name) {

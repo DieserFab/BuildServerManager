@@ -25,6 +25,7 @@ public class BSMAPI {
 
     public BSMAPI() {
         instance = this;
+        Logger.l("iEnabled the BSMAPI you can now safely access it.");
     }
 
     /**
