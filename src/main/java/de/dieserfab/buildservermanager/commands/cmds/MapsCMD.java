@@ -3,6 +3,7 @@ package de.dieserfab.buildservermanager.commands.cmds;
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.api.BSMAPI;
 import de.dieserfab.buildservermanager.commands.AbstractCommand;
+import de.dieserfab.buildservermanager.utilities.Permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -49,7 +50,8 @@ public class MapsCMD extends AbstractCommand {
         }
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("open")) {
-                BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
+                if (hasPermission(player, Permissions.COMMAND_MAPS_OPEN))
+                    BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
                 return;
             }
             player.sendMessage(FAIL_COMMAND);
@@ -57,19 +59,22 @@ public class MapsCMD extends AbstractCommand {
         }
         if (args.length == 2) {
             if (args[0].equalsIgnoreCase("tp")) {
-                try {
-                    player.teleport(Bukkit.getWorld(args[1]).getSpawnLocation());
-                } catch (Exception e) {
-                    player.sendMessage("§7Error while teleporting:" + e.getMessage());
-                }
+                if (hasPermission(player, Permissions.COMMAND_MAPS_TP))
+                    try {
+                        player.teleport(Bukkit.getWorld(args[1]).getSpawnLocation());
+                    } catch (Exception e) {
+                        player.sendMessage("§7Error while teleporting:" + e.getMessage());
+                    }
                 return;
             }
             if (args[0].equalsIgnoreCase("addDomain")) {
-                player.sendMessage(BSMAPI.getInstance().addDomain(args[1]) ? SUCCESS_ADDDOMAIN.replace("%domain%", args[1]) : FAIL_ADDDOMAIN.replace("%domain%", args[1]));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_ADDDOMAIN))
+                    player.sendMessage(BSMAPI.getInstance().addDomain(args[1]) ? SUCCESS_ADDDOMAIN.replace("%domain%", args[1]) : FAIL_ADDDOMAIN.replace("%domain%", args[1]));
                 return;
             }
             if (args[0].equalsIgnoreCase("removeDomain")) {
-                player.sendMessage(BSMAPI.getInstance().removeDomain(args[1]) ? SUCCESS_REMOVEDOMAIN.replace("%domain%", args[1]) : FAIL_REMOVEDOMAIN.replace("%domain%", args[1]));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_REMOVEDOMAIN))
+                    player.sendMessage(BSMAPI.getInstance().removeDomain(args[1]) ? SUCCESS_REMOVEDOMAIN.replace("%domain%", args[1]) : FAIL_REMOVEDOMAIN.replace("%domain%", args[1]));
                 return;
             }
             player.sendMessage(FAIL_COMMAND);
@@ -77,11 +82,13 @@ public class MapsCMD extends AbstractCommand {
         }
         if (args.length == 3) {
             if (args[0].equalsIgnoreCase("addCategory")) {
-                player.sendMessage(BSMAPI.getInstance().addCategory(args[1], args[2]) ? SUCCESS_ADDCATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]) : FAIL_ADDCATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_ADDCATEGORY))
+                    player.sendMessage(BSMAPI.getInstance().addCategory(args[1], args[2]) ? SUCCESS_ADDCATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]) : FAIL_ADDCATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]));
                 return;
             }
             if (args[0].equalsIgnoreCase("removeCategory")) {
-                player.sendMessage(BSMAPI.getInstance().removeCategory(args[1], args[2]) ? SUCCESS_REMOVECATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]) : FAIL_REMOVECATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_REMOVECATEGORY))
+                    player.sendMessage(BSMAPI.getInstance().removeCategory(args[1], args[2]) ? SUCCESS_REMOVECATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]) : FAIL_REMOVECATEGORY.replace("%domain%", args[1]).replace("%category%", args[2]));
                 return;
             }
             player.sendMessage(FAIL_COMMAND);
@@ -89,7 +96,8 @@ public class MapsCMD extends AbstractCommand {
         }
         if (args.length == 4) {
             if (args[0].equalsIgnoreCase("removeMap")) {
-                player.sendMessage(BSMAPI.getInstance().removeMap(args[1], args[2], args[3]) ? SUCCESS_REMOVEMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]) : FAIL_REMOVEMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_REMOVEMAP))
+                    player.sendMessage(BSMAPI.getInstance().removeMap(args[1], args[2], args[3]) ? SUCCESS_REMOVEMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]) : FAIL_REMOVEMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]));
                 return;
             }
             player.sendMessage(FAIL_COMMAND);
@@ -97,7 +105,8 @@ public class MapsCMD extends AbstractCommand {
         }
         if (args.length == 5) {
             if (args[0].equalsIgnoreCase("addMap")) {
-                player.sendMessage(BSMAPI.getInstance().addMap(args[1], args[2], args[3], args[4]) ? SUCCESS_ADDMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]).replace("%type%", args[4].toLowerCase()) : FAIL_ADDMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]).replace("%type%", args[4].toLowerCase()));
+                if (hasPermission(player, Permissions.COMMAND_MAPS_ADDMAP))
+                    player.sendMessage(BSMAPI.getInstance().addMap(args[1], args[2], args[3], args[4]) ? SUCCESS_ADDMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]).replace("%type%", args[4].toLowerCase()) : FAIL_ADDMAP.replace("%domain%", args[1]).replace("%category%", args[2]).replace("%map%", args[3]).replace("%type%", args[4].toLowerCase()));
                 return;
             }
             player.sendMessage(FAIL_COMMAND);
@@ -112,15 +121,15 @@ public class MapsCMD extends AbstractCommand {
             return Arrays.asList("open", "tp", "addDomain", "removeDomain", "addCategory", "removeCategory", "addMap", "removeMap");
         }
         if (strings.length == 2) {
-            if(strings[0].equalsIgnoreCase("tp")){
+            if (strings[0].equalsIgnoreCase("tp")) {
                 List<String> worlds = new ArrayList<>();
                 Bukkit.getWorlds().forEach(world -> worlds.add(world.getName()));
                 return worlds;
             }
         }
-        if(strings.length == 5){
-            if(strings[0].equalsIgnoreCase("addMap")){
-                return Arrays.asList("normal","nether","end","void");
+        if (strings.length == 5) {
+            if (strings[0].equalsIgnoreCase("addMap")) {
+                return Arrays.asList("normal", "nether", "end", "void");
             }
         }
         return Arrays.asList(" ");

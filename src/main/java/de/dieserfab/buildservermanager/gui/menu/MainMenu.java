@@ -2,6 +2,7 @@ package de.dieserfab.buildservermanager.gui.menu;
 
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
+import de.dieserfab.buildservermanager.utilities.FileUtilities;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -23,12 +24,13 @@ public class MainMenu extends AbstractGui {
     private static final String PLAYERS = "§8Players";
     private static final List<String> PLAYERS_LORE = Arrays.asList("§7Leftclick to view all online players.", " ");
     private static final String PLAYERS_ERROR = "§cError couldnt load Playerhead";
+    private static final String INFORMATION = "§8§lInformation";
 
     @Override
     public void init() {
         setItem(10, new ItemCreator(Material.REDSTONE, 1, PLAYERS_ERROR, null).create());
         setItem(13, new ItemCreator(Material.PAPER, 1, MAP_SELECTION, MAP_SELECTION_LORE).create());
-        setItem(16, new ItemCreator(Material.BARRIER, 1, "§7Coming soon...", null).create());
+        setItem(16, new ItemCreator(Material.NAME_TAG, 1, INFORMATION, Arrays.asList("§7Plugin Version: "+BSM.getInstance().getDescription().getVersion(),"§7CPU Cores: "+Runtime.getRuntime().availableProcessors(),"§7Available RAM: "+ FileUtilities.bytesToMb(Runtime.getRuntime().maxMemory())+"MB"," ")).create());
 
     }
 
@@ -41,12 +43,11 @@ public class MainMenu extends AbstractGui {
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         if (clickType == ClickType.LEFT) {
-            String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName()).replaceAll(" ", "");
-            switch (string) {
-                case "Players":
+            switch (itemUsed.getItemMeta().getDisplayName()) {
+                case PLAYERS:
                     BSM.getInstance().getGuiManager().getGui("playersmenu").openGui(player);
                     break;
-                case "MapSelection":
+                case MAP_SELECTION:
                     BSM.getInstance().getGuiManager().getGui("domainmenu").openGui(player);
                     break;
             }

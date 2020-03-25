@@ -1,0 +1,10 @@
+
+maps:
+  open: 'bsm.maps.open'
+  tp: 'bsm.maps.tp'
+  adddomain: 'bsm.maps.adddomain'
+  removedomain: 'bsm.maps.removedomain'
+  addcategory: 'bsm.maps.addcategory'
+  removecategory: 'bsm.maps.removecategory'
+  addmap: 'bsm.maps.addmap'
+  removemap: 'bsm.maps.removemap'

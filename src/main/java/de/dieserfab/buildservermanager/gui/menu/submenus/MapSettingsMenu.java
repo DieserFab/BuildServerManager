@@ -23,7 +23,6 @@ import java.util.List;
 public class MapSettingsMenu extends AbstractGui {
     public MapSettingsMenu(GuiType guiType, String title, String name) {
         super(guiType, title, name);
-        System.out.println("NEW MAPSETTINGSMENU");
     }
 
     @Getter

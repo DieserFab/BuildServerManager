@@ -18,6 +18,8 @@ public class PlayersMenu extends AbstractGui {
         super(GuiType.BIG_CHEST, TITLE, "playersmenu");
     }
 
+    private static final String BACK = "§8§lBack to the Main Menu";
+    private static final List<String> BACK_LORE = Arrays.asList("§7Click here to get back to the Main Menu.", " ");
     private static final String TITLE = "§8§lPlayers";
     private static final String TELEPORT_SUCCESS = "§7You teleported to the player §a%player%§7.";
     private static final String TELEPORT_FAIL = "§cError while trying to teleport see console for more information.";
@@ -30,6 +32,7 @@ public class PlayersMenu extends AbstractGui {
             setItem(count, new ItemCreator(player.getName(), 1, "§7" + player.getName(), PLAYER_LORE).create());
             count++;
         }
+        setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
     }
 
     @Override
@@ -40,6 +43,10 @@ public class PlayersMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
+        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(BACK)) {
+            BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
+            return;
+        }
         String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName());
         try {
             Player p = Bukkit.getPlayer(string);

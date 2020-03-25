@@ -65,6 +65,7 @@ public class MapMenu extends AbstractGui {
             setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
         } else {
             setItem(31, new ItemCreator(Material.BARRIER, 1, NO_MAP, NO_MAP_LORE).create());
+            setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
         }
     }
 

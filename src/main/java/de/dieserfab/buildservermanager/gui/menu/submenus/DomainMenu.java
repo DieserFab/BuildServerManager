@@ -45,6 +45,7 @@ public class DomainMenu extends AbstractGui {
             setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
         } else {
             setItem(13, new ItemCreator(Material.BARRIER, 1, NO_DOMAIN, NO_DOMAIN_LORE).create());
+            setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
         }
     }
 

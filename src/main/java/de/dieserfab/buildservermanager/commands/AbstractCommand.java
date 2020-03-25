@@ -11,6 +11,8 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 
     public String name;
 
+    private static final String NO_PERMISSION = "§cYou dont have permission to use that command.";
+
     public AbstractCommand(String name) {
         this.name = name;
         BSM.getInstance().getCommand(name).setExecutor(this);
@@ -23,6 +25,14 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
         } else {
             handleCommandAsConsole(args);
         }
+        return false;
+    }
+
+    public boolean hasPermission(Player player, String permission) {
+        if (player.hasPermission(permission)) {
+            return true;
+        }
+        player.sendMessage(NO_PERMISSION);
         return false;
     }
 
