@@ -1,6 +1,7 @@
 package de.dieserfab.buildservermanager.commands;
 
 import de.dieserfab.buildservermanager.BSM;
+import de.dieserfab.buildservermanager.utilities.Messages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,7 +33,7 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
         if (player.hasPermission(permission)) {
             return true;
         }
-        player.sendMessage(NO_PERMISSION);
+        player.sendMessage(Messages.COMMANDS_NO_PERMISSION);
         return false;
     }
 

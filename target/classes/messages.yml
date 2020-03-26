@@ -1,0 +1,135 @@
+commands:
+  no_permission: '§cYou dont have the permission to use this command.'
+  fail_command: '§7Wrong command usage try §a/maps §7to get an overview of all commands.'
+  tp:
+    success: '§7You teleported to the world §a%world%§7.'
+    fail: '§7Unable to teleport you.'
+  adddomain:
+    success: '§7You successfully added the domain §a%domain%§7.'
+    fail: '§7Unable to add the domain §a%domain%§7.'
+  removedomain:
+    success: '§7You successfully deleted the domain §a%domain%§7.'
+    fail: '§7Unable to delete the domain §a%domain%§7.'
+  addcategory:
+    success: '§7You successfully added the category §a%category% §7to the domain §a%domain%§7.'
+    fail: '§7Unable to add the category §a%category% §7to the domain §a%domain%§7.'
+  removecategory:
+    success: '§7You successfully removed the category §a%category% §7from the domain §a%domain%§7.'
+    fail: '§7Unable to remove the category §a%category% §7from the domain §a%domain%§7.'
+  addmap:
+    success: '§7You successfully added the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
+    fail: '§7Unable to add the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
+  removemap:
+    success: '§7You successfully removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
+    fail: '§7Unable to removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
+guis:
+  category_menu:
+    back: '§8§lBack to the Domain Menu'
+    back_lore:
+      - '§7Click here to get back to the Domain Menu.'
+      - ' '
+    create_category: '§a§lCreate a new Category'
+    create_category_lore:
+      - '§aClick here to create a new Category.'
+      - ' '
+    wrong_usage: '§7The Category cant have spaces.'
+    create_msg: '§7Type the desired §aname §7for the §acategory §7(you cant use spaces in the category):'
+    no_category: '§cTheres no Category to choose from.'
+    no_category_lore:
+      - '§7To create a Category you can either click this'
+      - '§7icon or use the command /maps addCategory <domain> <name>'
+      - ' '
+  domain_menu:
+    back: '§8§lBack to the Main Menu'
+    back_lore:
+      - '§7Click here to get back to the Main Menu.'
+      - ' '
+    create_domain: '§a§lCreate a new Domain'
+    create_domain_lore:
+      - '§aClick here to create a new Domain.'
+      - ' '
+    wrong_usage: '§7The Domain cant have spaces in the name.'
+    create_msg: '§7Type the desired §aname §7for the §adomain §7(you cant use spaces in the name):'
+    no_domain: '§cTheres no Domain to choose from.'
+    no_domain_lore:
+      - '§7To create a Domain you can either leftclick this'
+      - '§7icon or use the command /maps addDomain <name>.'
+      - ' '
+  map_menu:
+    back: '§8§lBack to the Category Menu'
+    back_lore:
+      - '§7Click here to get back to the Category Menu.'
+      - ' '
+    create_map: '§a§lCreate a new Map'
+    create_map_lore:
+      - '§aClick here to create a new Map.'
+      - ' '
+    wrong_usage: '§7Wrong arguments the §amap §7must consist of the following: §a<name> <void/nether/end/normal>§7.'
+    create_msg: '§7Type the desired §aname §7for the §amap §7(you cant use spaces in the name):'
+    no_map: '§cTheres no Map to choose from.'
+    no_map_lore:
+      - '§7To create a Map you can either §aleftclick §7this'
+      - '§7icon or use the command /maps addMap <domain> <category> <name> <void/nether/end/normal>'
+      - ' '
+    map_lore:
+      - '§7Press leftclick to teleport to that map.'
+      - '§7Press rightclick to manage the settings of that map.'
+      - ' '
+    map_lore_not_loaded:
+      - '§7This Map isnt loaded press leftclick to load and teleport to the Map.'
+      - '§7Keep in mind loading the Map will cause a short lag.'
+      - ' '
+  map_settings_menu:
+    load:
+      item: '§8§lLoad the Map'
+      success: '§7Successfully loaded the Map.'
+      fail: '§cError while loading the Map.'
+    load_lore:
+      - '§7Click here to load the Map.'
+      - '§7This can cause a short lag spike.'
+      - ' '
+    unload:
+      item: '§8§lUnload the Map'
+      success: '§7Successfully unloaded the Map.'
+      fail: '§cError while unloading the Map.'
+    unload_lore:
+      - '§7Click here to unload the Map.'
+      - '§7This can save some Server Resources.'
+      - ' '
+    back: '§8§lBack to the Maps Menu'
+    back_lore:
+      - '§7Click here to get back to the Maps Menu.'
+      - ' '
+    information: '§8§lInformation'
+    teleport: '§8§lTeleport'
+    teleport_lore:
+      - '§7Click to teleport to this World'
+      - ' '
+    delete: '§c§lDelete World'
+    delete_lore:
+      - '§cTo delete the World you have to STRG+Q this icon.'
+      - '§cBeware this canot be undone!!'
+      - ' '
+  players_menu:
+    back: '§8§lBack to the Main Menu'
+    back_lore:
+      - '§7Click here to get back to the Main Menu.'
+      - ' '
+    teleport:
+      success: '§7You teleported to the player §a%player%§7.'
+      fail: '§cError while trying to teleport see console for more information.'
+    player_lore:
+      - '§7To teleport to the player click here.'
+      - ' '
+  main_menu:
+    title: '§8§lMain Menu'
+    map_selection: '§8§lMap Selection'
+    map_selection_lore:
+      - '§7Click to open the overview of all Domains.'
+      - ' '
+    players: '§8§lPlayers'
+    players_lore:
+      - '§7Leftclick to view all online players.'
+      - ' '
+    players_error: '§cError couldnt load Playerhead'
+    information: '§8§lInformation'

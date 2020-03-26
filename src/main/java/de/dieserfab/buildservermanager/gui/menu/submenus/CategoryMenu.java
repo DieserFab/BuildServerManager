@@ -5,31 +5,21 @@ import de.dieserfab.buildservermanager.api.BSMAPI;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
 import de.dieserfab.buildservermanager.mapselector.Category;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
+import de.dieserfab.buildservermanager.utilities.Messages;
 import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CategoryMenu extends AbstractGui {
     public CategoryMenu(GuiType guiType, String title, String name) {
         super(guiType, title, name);
     }
-
-    private static final String BACK = "§8§lBack to the Domain Menu";
-    private static final List<String> BACK_LORE = Arrays.asList("§7Click here to get back to the Domain Menu.", " ");
-    private static final String CREATE_CATEGORY = "§a§lCreate a new Category";
-    private static final List<String> CREATE_CATEGORY_LORE = Arrays.asList("§aClick here to create a new Category.", " ");
-    private static final String WRONG_USAGE = "§7The Category cant have spaces.";
-    private static final String CREATE_MSG = "§7Type the desired §aname §7for the §acategory §7(you cant use spaces in the category):";
-    private static final String NO_DOMAIN = "§cTheres no Category to choose from.";
-    private static final List<String> NO_DOMAIN_LORE = Arrays.asList("§7To create a Category you can either click this", "§7icon or use the command /maps addCategory <domain> <name>", " ");
 
     @Getter
     private String domain;
@@ -46,14 +36,14 @@ public class CategoryMenu extends AbstractGui {
         if (!api.getCategories(getName()).isEmpty()) {
             int count = 0;
             for (Category category : api.getCategories(getName())) {
-                setItem(count, new ItemCreator(Material.PAPER, 1, "§8§l" + category.getName(), NO_DOMAIN_LORE).create());
+                setItem(count, new ItemCreator(Material.PAPER, 1, "§8§l" + category.getName(), null).create());
                 count++;
             }
-            setItem(SlotPosition.SMALL_CHEST_BOTTOM_RIGHT.getSlot(), new ItemCreator(Material.EMERALD_BLOCK, 1, CREATE_CATEGORY, CREATE_CATEGORY_LORE).create());
-            setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
+            setItem(SlotPosition.SMALL_CHEST_BOTTOM_RIGHT.getSlot(), new ItemCreator(Material.EMERALD_BLOCK, 1, Messages.GUIS_CATEGORYMENU_CREATE_CATEGORY, Messages.GUIS_CATEGORYMENU_CREATE_CATEGORY_LORE).create());
+            setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, Messages.GUIS_CATEGORYMENU_BACK, Messages.GUIS_CATEGORYMENU_BACK_LORE).create());
         } else {
-            setItem(13, new ItemCreator(Material.BARRIER, 1, NO_DOMAIN, NO_DOMAIN_LORE).create());
-            setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
+            setItem(13, new ItemCreator(Material.BARRIER, 1, Messages.GUIS_CATEGORYMENU_NO_CATEGORY, Messages.GUIS_CATEGORYMENU_NO_CATEGORY_LORE).create());
+            setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, Messages.GUIS_CATEGORYMENU_BACK, Messages.GUIS_CATEGORYMENU_BACK_LORE).create());
         }
     }
 
@@ -65,14 +55,14 @@ public class CategoryMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(BACK)) {
+        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_CATEGORYMENU_BACK)) {
             BSM.getInstance().getGuiManager().getGui("domainmenu").openGui(player);
             return;
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(NO_DOMAIN) || itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(CREATE_CATEGORY)) {
+        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_CATEGORYMENU_NO_CATEGORY) || itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_CATEGORYMENU_CREATE_CATEGORY)) {
             create.add(player);
             player.closeInventory();
-            player.sendMessage(CREATE_MSG);
+            player.sendMessage(Messages.GUIS_CATEGORYMENU_CREATE_MSG);
             return;
         }
         String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName()).replaceAll("\\(.*\\)", "");
@@ -87,7 +77,7 @@ public class CategoryMenu extends AbstractGui {
         if (create.contains(player)) {
             String[] strings = message.split(" ");
             if (strings.length != 1) {
-                player.sendMessage(WRONG_USAGE);
+                player.sendMessage(Messages.GUIS_CATEGORYMENU_WRONG_USAGE);
                 return true;
             }
             player.performCommand("maps addCategory " + getDomain() + " " + strings[0]);
