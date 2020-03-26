@@ -198,20 +198,25 @@ public class BSMAPI {
                     Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
                     return false;
                 }
-                if (type.equalsIgnoreCase("void")) {
-                    WorldCreator creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(type, null));
-                    World world = Bukkit.getServer().createWorld(creator);
-                } else if (type.equalsIgnoreCase("nether")) {
-                    WorldCreator creator = new WorldCreator(name).environment(World.Environment.NETHER);
-                    World world = Bukkit.getServer().createWorld(creator);
-                } else if (type.equalsIgnoreCase("end")) {
-                    WorldCreator creator = new WorldCreator(name).environment(World.Environment.THE_END);
-                    World world = Bukkit.getServer().createWorld(creator);
-                } else if (type.equalsIgnoreCase("normal")) {
-                    WorldCreator creator = new WorldCreator(name);
-                    World world = Bukkit.getServer().createWorld(creator);
-                } else {
-                    Logger.l("eError wrong type entered try: void, nether, end, normal");
+                try {
+                    WorldCreator creator;
+                    World world;
+                    if (type.equalsIgnoreCase("void")) {
+                        creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(type, null));
+                    } else if (type.equalsIgnoreCase("nether")) {
+                        creator = new WorldCreator(name).environment(World.Environment.NETHER);
+                    } else if (type.equalsIgnoreCase("end")) {
+                        creator = new WorldCreator(name).environment(World.Environment.THE_END);
+                    } else if (type.equalsIgnoreCase("normal")) {
+                        creator = new WorldCreator(name);
+                    } else {
+                        creator = null;
+                        Logger.l("eError wrong type entered try: void, nether, end, normal");
+                        return false;
+                    }
+                    world = creator.createWorld();
+                } catch (Exception e) {
+                    Logger.l("eError while creating the world:" + e.getMessage());
                     return false;
                 }
                 BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type));

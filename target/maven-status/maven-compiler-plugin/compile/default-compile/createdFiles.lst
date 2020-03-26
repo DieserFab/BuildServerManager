@@ -27,4 +27,5 @@ de\dieserfab\buildservermanager\config\Config.class
 de\dieserfab\buildservermanager\gui\menu\submenus\CategoryMenu.class
 de\dieserfab\buildservermanager\config\configs\MapsConfig.class
 de\dieserfab\buildservermanager\commands\AbstractCommand.class
+de\dieserfab\buildservermanager\listener\ConnectionListener.class
 de\dieserfab\buildservermanager\listener\GuiListener.class

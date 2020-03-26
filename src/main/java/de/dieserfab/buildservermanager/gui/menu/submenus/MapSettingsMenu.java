@@ -56,7 +56,7 @@ public class MapSettingsMenu extends AbstractGui {
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.ENDER_PEARL, 1, TELEPORT, TELEPORT_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot() + 1, new ItemCreator("MHF_ArrowUp", 1, LOAD, LOAD_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot() + 2, new ItemCreator("MHF_ArrowDown", 1, UNLOAD, UNLOAD_LORE).create());
-        setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, INFORMATION, Arrays.asList("§7Name: " + ChatColor.stripColor(getTitle()), "§7Disk Space: ~" + FileUtilities.bytesToMb(FileUtilities.sizeOfDirectory(new File(ChatColor.stripColor(getTitle())))) + "MB", " ")).create());
+        setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, INFORMATION, Arrays.asList("§7Name: " + ChatColor.stripColor(getTitle()), "§7Disk Space: ~" + FileUtilities.humanReadableByteCountBin(FileUtilities.sizeOfDirectory(new File(ChatColor.stripColor(getTitle())))) + "MB", " ")).create());
         setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, BACK, BACK_LORE).create());
     }
 
