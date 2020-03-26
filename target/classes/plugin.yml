@@ -1,5 +1,5 @@
 name: BuildServerManager
-version: 0.1.0
+version: 1.0.0
 main: de.dieserfab.buildservermanager.BSM
 author: DieserFab
 commands:
