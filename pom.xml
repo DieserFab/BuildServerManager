@@ -7,7 +7,14 @@
     <groupId>de.dieserfab</groupId>
     <artifactId>BuildServerManager</artifactId>
     <version>1.0.1</version>
-
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory> <!-- (your resources folder location) -->
+                <filtering>true</filtering> <!-- this is the important part, it's what replaces, filters, all placeholders in the resources folder (such as ${project.version} in plugin.yml) -->
+            </resource>
+        </resources>
+    </build>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <javaversion>1.8</javaversion>
