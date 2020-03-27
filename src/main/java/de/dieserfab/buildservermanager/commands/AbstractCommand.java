@@ -12,8 +12,6 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 
     public String name;
 
-    private static final String NO_PERMISSION = "§cYou dont have permission to use that command.";
-
     public AbstractCommand(String name) {
         this.name = name;
         BSM.getInstance().getCommand(name).setExecutor(this);

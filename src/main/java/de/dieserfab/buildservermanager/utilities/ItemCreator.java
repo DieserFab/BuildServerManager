@@ -32,6 +32,24 @@ public class ItemCreator {
     /**
      * Creates an ItemCreator
      *
+     * @param material is the Material of the ItemStack
+     * @param amount   is the amount of the ItemStack's item
+     * @param name     is the Displayname of the ItemStack
+     * @param lore     is the Lore of the ItemStack
+     */
+    public ItemCreator(Material material, short damage, int amount, String name, List<String> lore) {
+        this.itemStack = new ItemStack(material);
+        this.itemStack.setDurability(damage);
+        this.itemStack.setAmount(amount);
+        ItemMeta itemMeta = this.itemStack.getItemMeta();
+        itemMeta.setDisplayName(name);
+        itemMeta.setLore(lore);
+        this.itemStack.setItemMeta(itemMeta);
+    }
+
+    /**
+     * Creates an ItemCreator
+     *
      * @param skullName instead of an item it auto creates an skull from the player
      * @param amount    is the amount of the ItemStack's item
      * @param name      is the Displayname of the ItemStack

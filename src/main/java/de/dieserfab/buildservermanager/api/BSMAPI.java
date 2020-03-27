@@ -18,6 +18,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is an API class which provides many utility method to manage the functionality of this Plugin
+ * It can also be interfered from an extern plugin by retrieving an instance of this plugin with
+ * BSMAPI api = BSMAPI.getInstance();
+ */
+
 public class BSMAPI {
 
     @Getter
@@ -201,18 +207,23 @@ public class BSMAPI {
                 try {
                     WorldCreator creator;
                     World world;
-                    if (type.equalsIgnoreCase("void")) {
-                        creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(type, null));
-                    } else if (type.equalsIgnoreCase("nether")) {
-                        creator = new WorldCreator(name).environment(World.Environment.NETHER);
-                    } else if (type.equalsIgnoreCase("end")) {
-                        creator = new WorldCreator(name).environment(World.Environment.THE_END);
-                    } else if (type.equalsIgnoreCase("normal")) {
-                        creator = new WorldCreator(name);
-                    } else {
-                        creator = null;
-                        Logger.l("eError wrong type entered try: void, nether, end, normal");
-                        return false;
+                    switch (type.toLowerCase()) {
+                        case "void":
+                            creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(null, null));
+                            break;
+                        case "nether":
+                            creator = new WorldCreator(name).environment(World.Environment.NETHER);
+                            break;
+                        case "end":
+                            creator = new WorldCreator(name).environment(World.Environment.THE_END);
+                            break;
+                        case "normal":
+                            creator = new WorldCreator(name);
+                            break;
+                        default:
+                            creator = null;
+                            Logger.l("eError wrong type entered try: void, nether, end, normal");
+                            return false;
                     }
                     world = creator.createWorld();
                 } catch (Exception e) {
