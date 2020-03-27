@@ -149,4 +149,8 @@ public class Messages {
     public static String GUIS_MAINMENU_PLAYERS_ERROR;
     @LoadMessage(path = "guis.main_menu.information")
     public static String GUIS_MAINMENU_INFORMATION;
+    @LoadMessage(path = "items.emerald.name")
+    public static String ITEMS_EMERALD_NAME;
+    @LoadMessage(path = "items.emerald.lore")
+    public static List<String> ITEMS_EMERALD_LORE;
 }

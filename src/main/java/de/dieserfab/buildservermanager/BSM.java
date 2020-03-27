@@ -6,6 +6,7 @@ import de.dieserfab.buildservermanager.config.ConfigManager;
 import de.dieserfab.buildservermanager.data.ProtocolVersion;
 import de.dieserfab.buildservermanager.gui.GuiManager;
 import de.dieserfab.buildservermanager.listener.ConnectionListener;
+import de.dieserfab.buildservermanager.listener.InteractListener;
 import de.dieserfab.buildservermanager.mapselector.DomainManager;
 import de.dieserfab.buildservermanager.utilities.Logger;
 import de.dieserfab.buildservermanager.utilities.chunkgenerator.VoidWorld;
@@ -50,6 +51,7 @@ public class BSM extends JavaPlugin {
 
     public void loadListener(PluginManager pluginManager) {
         pluginManager.registerEvents(new ConnectionListener(), this);
+        pluginManager.registerEvents(new InteractListener(), this);
     }
 
     public static BSM getInstance() {

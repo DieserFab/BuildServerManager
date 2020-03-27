@@ -13,6 +13,8 @@ public class GuiListener implements Listener {
     @EventHandler
     public void onInventoryClickEvent(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
+        if (BSM.getInstance().getGuiManager().getCurrentGuis().get(player) == null)
+            return;
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR || !event.getView().getTitle().equalsIgnoreCase(BSM.getInstance().getGuiManager().getCurrentGuis().get(player).getTitle()))
             return;
         BSM.getInstance().getGuiManager().getCurrentGuis().get(player).onGuiUse(player, event.getCurrentItem(), event.getClick());

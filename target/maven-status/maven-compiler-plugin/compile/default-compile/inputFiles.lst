@@ -12,6 +12,7 @@ A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildser
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\utilities\Permissions.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\BSM.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\AbstractCommand.java
+A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\listener\InteractListener.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\mapselector\Map.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\utilities\chunkgenerator\VoidWorld.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\api\BSMAPI.java

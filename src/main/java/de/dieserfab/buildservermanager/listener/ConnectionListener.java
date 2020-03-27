@@ -1,6 +1,9 @@
 package de.dieserfab.buildservermanager.listener;
 
 import de.dieserfab.buildservermanager.BSM;
+import de.dieserfab.buildservermanager.utilities.ItemCreator;
+import de.dieserfab.buildservermanager.utilities.Messages;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,9 +16,10 @@ public class ConnectionListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if(BSM.getInstance().getConfig().getBoolean("awareness_message")){
+        if (BSM.getInstance().getConfig().getBoolean("awareness_message")) {
             player.sendMessage(AWARENESS_NOTIFICATION);
         }
+        player.getInventory().setItem(BSM.getInstance().getConfig().getInt("emerald_slot"), new ItemCreator(Material.EMERALD, 1, Messages.ITEMS_EMERALD_NAME, Messages.ITEMS_EMERALD_LORE).create());
     }
 
 }

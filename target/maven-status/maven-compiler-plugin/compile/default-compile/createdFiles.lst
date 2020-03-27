@@ -26,6 +26,7 @@ de\dieserfab\buildservermanager\gui\GuiManager.class
 de\dieserfab\buildservermanager\gui\AbstractGui$SlotPosition.class
 de\dieserfab\buildservermanager\utilities\ItemCreator.class
 de\dieserfab\buildservermanager\gui\AbstractGui$GuiType.class
+de\dieserfab\buildservermanager\listener\InteractListener.class
 de\dieserfab\buildservermanager\config\Config.class
 de\dieserfab\buildservermanager\gui\menu\submenus\CategoryMenu.class
 de\dieserfab\buildservermanager\config\configs\MapsConfig.class

@@ -1,3 +1,11 @@
+items:
+  emerald:
+    name: '§a§lBuild Menu §7(rightclick)'
+    lore:
+      - '§7This opens a menu in which you have easy access to all the'
+      - '§7utilities of this plugin.'
+      - '§7Rightclick to open'
+      - ' '
 commands:
   no_permission: '§cYou dont have the permission to use this command.'
   fail_command: '§7Wrong command usage try §a/maps §7to get an overview of all commands.'
