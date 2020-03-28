@@ -11,38 +11,60 @@ public class Messages {
         Logger.l("iPopulating Message Class");
     }
 
+    /* Command Messages */
+
     @LoadMessage(path = "commands.no_permission")
     public static String COMMANDS_NO_PERMISSION;
-    @LoadMessage(path = "commands.fail_command")
+    @LoadMessage(path = "commands.maps.fail_command")
     public static String COMMANDS_FAIL_COMMAND;
-    @LoadMessage(path = "commands.adddomain.success")
+    @LoadMessage(path = "commands.maps.adddomain.success")
     public static String COMMANDS_ADDDOMAIN_SUCCESS;
-    @LoadMessage(path = "commands.adddomain.fail")
+    @LoadMessage(path = "commands.maps.adddomain.fail")
     public static String COMMANDS_ADDDOMAIN_FAIL;
-    @LoadMessage(path = "commands.removedomain.success")
+    @LoadMessage(path = "commands.maps.removedomain.success")
     public static String COMMANDS_REMOVEDOMAIN_SUCCESS;
-    @LoadMessage(path = "commands.removedomain.fail")
+    @LoadMessage(path = "commands.maps.removedomain.fail")
     public static String COMMANDS_REMOVEDOMAIN_FAIL;
-    @LoadMessage(path = "commands.addcategory.success")
+    @LoadMessage(path = "commands.maps.addcategory.success")
     public static String COMMANDS_ADDCATEGORY_SUCCESS;
-    @LoadMessage(path = "commands.addcategory.fail")
+    @LoadMessage(path = "commands.maps.addcategory.fail")
     public static String COMMANDS_ADDCATEGORY_FAIL;
-    @LoadMessage(path = "commands.removecategory.success")
+    @LoadMessage(path = "commands.maps.removecategory.success")
     public static String COMMANDS_REMOVECATEGORY_SUCCESS;
-    @LoadMessage(path = "commands.removecategory.fail")
+    @LoadMessage(path = "commands.maps.removecategory.fail")
     public static String COMMANDS_REMOVECATEGORY_FAIL;
-    @LoadMessage(path = "commands.addmap.success")
+    @LoadMessage(path = "commands.maps.addmap.success")
     public static String COMMANDS_ADDMAP_SUCCESS;
-    @LoadMessage(path = "commands.addmap.fail")
+    @LoadMessage(path = "commands.maps.addmap.fail")
     public static String COMMANDS_ADDMAP_FAIL;
-    @LoadMessage(path = "commands.removemap.success")
+    @LoadMessage(path = "commands.maps.removemap.success")
     public static String COMMANDS_REMOVEMAP_SUCCESS;
-    @LoadMessage(path = "commands.removemap.fail")
+    @LoadMessage(path = "commands.maps.removemap.fail")
     public static String COMMANDS_REMOVEMAP_FAIL;
-    @LoadMessage(path = "commands.tp.success")
+    @LoadMessage(path = "commands.maps.tp.success")
     public static String COMMANDS_TP_SUCCESS;
-    @LoadMessage(path = "commands.tp.fail")
+    @LoadMessage(path = "commands.maps.tp.fail")
     public static String COMMANDS_TP_FAIL;
+
+    @LoadMessage(path = "commands.gamemode.fail_command")
+    public static String COMMANDS_GAMEMODE_FAIL_COMMAND;
+    @LoadMessage(path = "commands.gamemode.success")
+    public static String COMMANDS_GAMEMODE_SUCCESS;
+
+    /* Gui Messages*/
+    @LoadMessage(path = "guis.player_utility_menu.back")
+    public static String GUIS_PLAYERUTILITYMENU_BACK;
+    @LoadMessage(path = "guis.player_utility_menu.back_lore")
+    public static List<String> GUIS_PLAYERUTILITYMENU_BACK_LORE;
+    @LoadMessage(path = "guis.player_utility_menu.gamemode_0")
+    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_0;
+    @LoadMessage(path = "guis.player_utility_menu.gamemode_1")
+    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_1;
+    @LoadMessage(path = "guis.player_utility_menu.gamemode_2")
+    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_2;
+    @LoadMessage(path = "guis.player_utility_menu.gamemode_3")
+    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_3;
+
     @LoadMessage(path = "guis.category_menu.back")
     public static String GUIS_CATEGORYMENU_BACK;
     @LoadMessage(path = "guis.category_menu.back_lore")
@@ -59,6 +81,7 @@ public class Messages {
     public static String GUIS_CATEGORYMENU_NO_CATEGORY;
     @LoadMessage(path = "guis.category_menu.no_category_lore")
     public static List<String> GUIS_CATEGORYMENU_NO_CATEGORY_LORE;
+
     @LoadMessage(path = "guis.domain_menu.back")
     public static String GUIS_DOMAINMENU_BACK;
     @LoadMessage(path = "guis.domain_menu.back_lore")
@@ -75,6 +98,7 @@ public class Messages {
     public static String GUIS_DOMAINMENU_NO_DOMAIN;
     @LoadMessage(path = "guis.domain_menu.no_domain_lore")
     public static List<String> GUIS_DOMAINMENU_NO_DOMAIN_LORE;
+
     @LoadMessage(path = "guis.map_menu.back")
     public static String GUIS_MAPMENU_BACK;
     @LoadMessage(path = "guis.map_menu.back_lore")
@@ -95,6 +119,7 @@ public class Messages {
     public static List<String> GUIS_MAPMENU_MAP_LORE;
     @LoadMessage(path = "guis.map_menu.map_lore_not_loaded")
     public static List<String> GUIS_MAPMENU_MAP_NOT_LOADED_LORE;
+
     @LoadMessage(path = "guis.map_settings_menu.load.item")
     public static String GUIS_MAPSETTINGSMENU_LOAD;
     @LoadMessage(path = "guis.map_settings_menu.load.success")
@@ -125,6 +150,7 @@ public class Messages {
     public static String GUIS_MAPSETTINGSMENU_DELETE;
     @LoadMessage(path = "guis.map_settings_menu.delete_lore")
     public static List<String> GUIS_MAPSETTINGSMENU_DELETE_LORE;
+
     @LoadMessage(path = "guis.players_menu.back")
     public static String GUIS_PLAYERSMENU_BACK;
     @LoadMessage(path = "guis.players_menu.back_lore")
@@ -135,6 +161,7 @@ public class Messages {
     public static String GUIS_PLAYERSMENU_TELEPORT_FAIL;
     @LoadMessage(path = "guis.map_settings_menu.player_lore")
     public static List<String> GUIS_PLAYERSMENU_PLAYER_LORE;
+
     @LoadMessage(path = "guis.main_menu.title")
     public static String GUIS_MAINMENU_TITLE;
     @LoadMessage(path = "guis.main_menu.map_selection")
@@ -149,6 +176,13 @@ public class Messages {
     public static String GUIS_MAINMENU_PLAYERS_ERROR;
     @LoadMessage(path = "guis.main_menu.information")
     public static String GUIS_MAINMENU_INFORMATION;
+    @LoadMessage(path = "guis.main_menu.player_utility")
+    public static String GUIS_MAINMENU_PLAYER_UTILITY;
+    @LoadMessage(path = "guis.main_menu.player_utility_lore")
+    public static List<String> GUIS_MAINMENU_PLAYER_UTILITY_LORE;
+
+    /* Item Messages */
+
     @LoadMessage(path = "items.emerald.name")
     public static String ITEMS_EMERALD_NAME;
     @LoadMessage(path = "items.emerald.lore")

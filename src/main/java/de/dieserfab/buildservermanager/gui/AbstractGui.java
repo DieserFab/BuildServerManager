@@ -67,6 +67,7 @@ public abstract class AbstractGui implements Listener {
 
     public AbstractGui openGui(Player player) {
         onGuiOpen(player);
+        BSM.getInstance().getGuiManager().addCurrentGui(player, this);
         player.openInventory(this.inventory);
         return this;
     }

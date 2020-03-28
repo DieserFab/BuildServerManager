@@ -1,3 +1,12 @@
+# Enabling this option will cause the Plugin to load all Maps created to already load
+# Be aware that the Server startup will be depending on the Maps count way longer
+# This can cause crashes to weak server at least 3GB of Ram and 2 Cores with 2GHz+ are
+# required
 load_maps_on_server_startup: false
+# It just enables/disables a message on server join that contains useful tips on how to
+# Configure the Plugin to your needs
 awareness_message: true
+# The Slot on which the emerald should be in the inventory (keep in mind that the slots start
+# at 0)
+# Settings this to -1 will disable the emerald
 emerald_slot: 8

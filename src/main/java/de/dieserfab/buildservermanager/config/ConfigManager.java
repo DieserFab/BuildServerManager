@@ -6,6 +6,7 @@ import de.dieserfab.buildservermanager.config.configs.MessagesConfig;
 import de.dieserfab.buildservermanager.config.configs.PermissionsConfig;
 import de.dieserfab.buildservermanager.utilities.Logger;
 import de.dieserfab.buildservermanager.utilities.Messages;
+import de.dieserfab.buildservermanager.utilities.Permissions;
 import lombok.Getter;
 
 public class ConfigManager {
@@ -24,7 +25,7 @@ public class ConfigManager {
         try {
             BSM.getInstance().saveDefaultConfig();
             this.mapsConfig = new MapsConfig();
-            this.permissionsConfig = new PermissionsConfig();
+            this.permissionsConfig = new PermissionsConfig().populatePermissions(new Permissions());
             this.messagesConfig = new MessagesConfig().populateMessages(new Messages());
             Logger.l("iSucessfully loaded the Config files");
         }catch (Exception e){

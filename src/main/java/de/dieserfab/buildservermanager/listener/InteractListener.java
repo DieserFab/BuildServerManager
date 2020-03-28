@@ -1,6 +1,7 @@
 package de.dieserfab.buildservermanager.listener;
 
 import de.dieserfab.buildservermanager.utilities.Messages;
+import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,24 +20,21 @@ public class InteractListener implements Listener {
         ItemStack itemStack = event.getCurrentItem();
         if (itemStack == null || itemStack.getType() == Material.AIR)
             return;
-        if(event.getClick() == ClickType.RIGHT) {
-            if (itemStack.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.ITEMS_EMERALD_NAME)) {
-                player.performCommand("maps open");
-                event.setCancelled(true);
-            }
+        if (itemStack.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.ITEMS_EMERALD_NAME)) {
+            player.performCommand("maps open");
+            event.setCancelled(true);
         }
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event){
+    public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if(player.getItemInHand() != null){
-            if(event.getAction() == Action.RIGHT_CLICK_AIR  || event.getAction() == Action.RIGHT_CLICK_BLOCK){
-                if(player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(Messages.ITEMS_EMERALD_NAME)){
+            if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                Validate.notNull(player.getItemInHand());
+                if (player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(Messages.ITEMS_EMERALD_NAME)) {
                     player.performCommand("maps open");
                 }
             }
-        }
     }
 
 }

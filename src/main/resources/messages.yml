@@ -1,3 +1,6 @@
+#
+# Item Messages
+#
 items:
   emerald:
     name: '§a§lBuild Menu §7(rightclick)'
@@ -6,31 +9,50 @@ items:
       - '§7utilities of this plugin.'
       - '§7Rightclick to open'
       - ' '
+#
+# Command Messages
+#
 commands:
   no_permission: '§cYou dont have the permission to use this command.'
-  fail_command: '§7Wrong command usage try §a/maps §7to get an overview of all commands.'
-  tp:
-    success: '§7You teleported to the world §a%world%§7.'
-    fail: '§7Unable to teleport you.'
-  adddomain:
-    success: '§7You successfully added the domain §a%domain%§7.'
-    fail: '§7Unable to add the domain §a%domain%§7.'
-  removedomain:
-    success: '§7You successfully deleted the domain §a%domain%§7.'
-    fail: '§7Unable to delete the domain §a%domain%§7.'
-  addcategory:
-    success: '§7You successfully added the category §a%category% §7to the domain §a%domain%§7.'
-    fail: '§7Unable to add the category §a%category% §7to the domain §a%domain%§7.'
-  removecategory:
-    success: '§7You successfully removed the category §a%category% §7from the domain §a%domain%§7.'
-    fail: '§7Unable to remove the category §a%category% §7from the domain §a%domain%§7.'
-  addmap:
-    success: '§7You successfully added the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
-    fail: '§7Unable to add the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
-  removemap:
-    success: '§7You successfully removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
-    fail: '§7Unable to removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
+  gamemode:
+    fail_command: '§7Wrong command usage try §a/gamemode <0-3/survival|creative|adventure|spectator>§7.'
+    success: '§7Changed the Gamemode to §a%gamemode%§7.'
+  maps:
+    fail_command: '§7Wrong command usage try §a/maps §7to get an overview of all commands.'
+    tp:
+      success: '§7You teleported to the world §a%world%§7.'
+      fail: '§7Unable to teleport you.'
+    adddomain:
+      success: '§7You successfully added the domain §a%domain%§7.'
+      fail: '§7Unable to add the domain §a%domain%§7.'
+    removedomain:
+      success: '§7You successfully deleted the domain §a%domain%§7.'
+      fail: '§7Unable to delete the domain §a%domain%§7.'
+    addcategory:
+      success: '§7You successfully added the category §a%category% §7to the domain §a%domain%§7.'
+      fail: '§7Unable to add the category §a%category% §7to the domain §a%domain%§7.'
+    removecategory:
+      success: '§7You successfully removed the category §a%category% §7from the domain §a%domain%§7.'
+      fail: '§7Unable to remove the category §a%category% §7from the domain §a%domain%§7.'
+    addmap:
+      success: '§7You successfully added the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
+      fail: '§7Unable to add the map §a%map% §7to the category §a%category% §7from the domain §a%domain% §7with the generator §a%type%§7.'
+    removemap:
+      success: '§7You successfully removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
+      fail: '§7Unable to removed the map §a%map% §7from the category §a%category% §7of the domain §a%domain%§7.'
+#
+# Gui Messages
+#
 guis:
+  player_utility_menu:
+    back: '§8§lBack to the Main Menu'
+    back_lore:
+      - '§7Click here to get back to the Main Menu.'
+      - ' '
+    gamemode_0: '§7Gamemode Survival'
+    gamemode_1: '§7Gamemode Creative'
+    gamemode_2: '§7Gamemode Adventure'
+    gamemode_3: '§7Gamemode Spectator'
   category_menu:
     back: '§8§lBack to the Domain Menu'
     back_lore:
@@ -131,6 +153,10 @@ guis:
       - ' '
   main_menu:
     title: '§8§lMain Menu'
+    player_utility: '§8§lPlayer Utility'
+    player_utility_lore:
+      - '§7Click to open a menu with access to many utility methods.'
+      - ' '
     map_selection: '§8§lMap Selection'
     map_selection_lore:
       - '§7Click to open the overview of all Domains.'

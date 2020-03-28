@@ -2,6 +2,7 @@ package de.dieserfab.buildservermanager.gui.menu;
 
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
+import de.dieserfab.buildservermanager.gui.menu.submenus.PlayerUtilitiyMenu;
 import de.dieserfab.buildservermanager.utilities.FileUtilities;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
 import de.dieserfab.buildservermanager.utilities.Messages;
@@ -19,7 +20,8 @@ public class MainMenu extends AbstractGui {
 
     @Override
     public void init() {
-        setItem(10, new ItemCreator(Material.REDSTONE, 1, Messages.GUIS_MAINMENU_PLAYERS_ERROR, null).create());
+        setItem(10, new ItemCreator(Material.BARRIER, 1, Messages.GUIS_MAINMENU_PLAYERS_ERROR, null).create());
+        setItem(11, new ItemCreator(Material.REDSTONE, 1, Messages.GUIS_MAINMENU_PLAYER_UTILITY, Messages.GUIS_MAINMENU_PLAYER_UTILITY_LORE).create());
         setItem(13, new ItemCreator(Material.PAPER, 1, Messages.GUIS_MAINMENU_MAP_SELECTION, Messages.GUIS_MAINMENU_MAP_SELECTION_LORE).create());
         setItem(16, new ItemCreator(Material.NAME_TAG, 1, Messages.GUIS_MAINMENU_INFORMATION, Arrays.asList("§7Plugin Version: " + BSM.getInstance().getDescription().getVersion(), "§7CPU Cores: " + Runtime.getRuntime().availableProcessors(), "§7Available RAM: " + FileUtilities.bytesToMb(Runtime.getRuntime().maxMemory()) + "MB", " ")).create());
 
@@ -27,7 +29,6 @@ public class MainMenu extends AbstractGui {
 
     @Override
     public void onGuiOpen(Player player) {
-        BSM.getInstance().getGuiManager().addCurrentGui(player, this);
         setItem(10, new ItemCreator(player.getName(), 1, Messages.GUIS_MAINMENU_PLAYERS, Messages.GUIS_MAINMENU_PLAYERS_LORE).create());
     }
 
@@ -39,7 +40,9 @@ public class MainMenu extends AbstractGui {
         if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAINMENU_PLAYERS)) {
             BSM.getInstance().getGuiManager().getGui("playersmenu").openGui(player);
         }
-
+        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAINMENU_PLAYER_UTILITY)) {
+            new PlayerUtilitiyMenu(GuiType.BIG_CHEST,Messages.GUIS_MAINMENU_PLAYER_UTILITY,"player_utility_menu").openGui(player);
+        }
     }
 
     @Override

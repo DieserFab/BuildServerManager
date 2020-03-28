@@ -60,10 +60,7 @@ public class BSM extends JavaPlugin {
 
     @Override
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-        if (worldName.equalsIgnoreCase("void")) {
             return new VoidWorld();
-        }
-        return null;
     }
 
     public void startupSplash() {

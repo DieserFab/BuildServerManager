@@ -59,7 +59,6 @@ public class MapMenu extends AbstractGui {
     @Override
     public void onGuiOpen(Player player) {
         init();
-        BSM.getInstance().getGuiManager().addCurrentGui(player, this);
     }
 
     @Override
