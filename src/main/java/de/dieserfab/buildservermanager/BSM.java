@@ -12,6 +12,7 @@ import de.dieserfab.buildservermanager.utilities.Logger;
 import de.dieserfab.buildservermanager.utilities.chunkgenerator.VoidWorld;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,15 +62,15 @@ public class BSM extends JavaPlugin {
 
     @Override
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-            return new VoidWorld();
+        return new VoidWorld();
     }
 
     public void startupSplash() {
         Logger.l("i ");
-        Logger.l("i 88\"\"Yb 88   88 88 88     8888b.  .dP\"Y8 888888 88\"\"Yb Yb    dP 888888 88\"\"Yb 8b    d8    db    88b 88    db     dP\"\"b8 888888 88\"\"Yb");
-        Logger.l("i 88__dP 88   88 88 88      8I  Yb `Ybo.\" 88__   88__dP  Yb  dP  88__   88__dP 88b  d88   dPYb   88Yb88   dPYb   dP   `\" 88__   88__dP");
-        Logger.l("i 88\"\"Yb Y8   8P 88 88  .o  8I  dY o.`Y8b 88\"\"   88\"Yb    YbdP   88\"\"   88\"Yb  88YbdP88  dP__Yb  88 Y88  dP__Yb  Yb  \"88 88\"\"   88\"Yb ");
-        Logger.l("i 88oodP `YbodP' 88 88ood8 8888Y\"  8bodP' 888888 88  Yb    YP    888888 88  Yb 88 YY 88 dP\"\"\"\"Yb 88  Y8 dP\"\"\"\"Yb  YboodP 888888 88  Yb");
+        Logger.l("i 88\"\"Yb .dP\"Y8 8b    d8");
+        Logger.l("i 88__dP `Ybo.\" 88b  d88   " + ChatColor.GREEN + BSM.getInstance().getDescription().getName() + " " + ChatColor.GRAY + BSM.getInstance().getDescription().getVersion());
+        Logger.l("i 88\"\"Yb o.`Y8b 88YbdP88   " + ChatColor.GRAY + "Running on: " + Bukkit.getVersion());
+        Logger.l("i 88oodP 8bodP' 88 YY 88");
         Logger.l("i ");
         Logger.l("iStarting the Plugin");
     }
