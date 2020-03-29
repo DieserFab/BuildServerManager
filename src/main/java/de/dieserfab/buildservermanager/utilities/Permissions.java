@@ -25,7 +25,9 @@ public class Permissions {
     public static String COMMAND_MAPS_ADDMAP;
     @LoadPermission(path = "commands.maps.removemap")
     public static String COMMAND_MAPS_REMOVEMAP;
-    @LoadPermission(path = "commands.gamemode")
-    public static String COMMAND_GAMEMODE;
+    @LoadPermission(path = "commands.gamemode.other")
+    public static String COMMAND_GAMEMODE_OTHER;
+    @LoadPermission(path = "commands.gamemode.self")
+    public static String COMMAND_GAMEMODE_SELF;
 
 }

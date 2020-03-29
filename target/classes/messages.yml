@@ -16,7 +16,10 @@ commands:
   no_permission: '§cYou dont have the permission to use this command.'
   gamemode:
     fail_command: '§7Wrong command usage try §a/gamemode <0-3/survival|creative|adventure|spectator>§7.'
-    success: '§7Changed the Gamemode to §a%gamemode%§7.'
+    player_not_found: '§7The player you entered doesnt exist.'
+    success:
+      other: '§7Changed the Gamemode to §a%gamemode% §7of the player §a%player%§7.'
+      self: '§7Changed the Gamemode to §a%gamemode%§7.'
   maps:
     fail_command: '§7Wrong command usage try §a/maps §7to get an overview of all commands.'
     tp:

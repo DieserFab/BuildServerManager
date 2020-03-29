@@ -8,6 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 
     public String name;
@@ -16,6 +19,19 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
         this.name = name;
         BSM.getInstance().getCommand(name).setExecutor(this);
         BSM.getInstance().getCommand(name).setTabCompleter(this);
+    }
+
+    public List<String> intelligentTabComplete(List<String> possibillities, String current) {
+        if(current.isEmpty())
+            return possibillities;
+        List<String> out = new ArrayList<>();
+        char first = current.charAt(0);
+        for (String string : possibillities) {
+            if (string.charAt(0) == first) {
+                out.add(string);
+            }
+        }
+        return out;
     }
 
     public boolean onCommand(CommandSender sender, Command command, String name, String[] args) {

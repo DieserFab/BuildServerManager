@@ -48,8 +48,12 @@ public class Messages {
 
     @LoadMessage(path = "commands.gamemode.fail_command")
     public static String COMMANDS_GAMEMODE_FAIL_COMMAND;
-    @LoadMessage(path = "commands.gamemode.success")
-    public static String COMMANDS_GAMEMODE_SUCCESS;
+    @LoadMessage(path = "commands.gamemode.success.self")
+    public static String COMMANDS_GAMEMODE_SUCCESS_SELF;
+    @LoadMessage(path = "commands.gamemode.success.other")
+    public static String COMMANDS_GAMEMODE_SUCCESS_OTHER;
+    @LoadMessage(path = "commands.gamemode.player_not_found")
+    public static String COMMANDS_GAMEMODE_PLAYER_NOT_FOUND;
 
     /* Gui Messages*/
     @LoadMessage(path = "guis.player_utility_menu.back")

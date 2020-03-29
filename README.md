@@ -62,6 +62,10 @@ api.getMap(String domain,String category,String name); - Map
 
 api.getMaps(String domain,String category); - List<Map>
 
+api.getAllDeclaredMaps(); - List<String>
+
+api.getMapsToClassify(); - List<String>
+
 //some debug methods mainly for the author
 api.getDisplayname(String path); - String
 

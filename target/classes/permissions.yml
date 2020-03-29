@@ -9,4 +9,6 @@ commands:
     removecategory: 'bsm.maps.removecategory'
     addmap: 'bsm.maps.addmap'
     removemap: 'bsm.maps.removemap'
-  gamemode: 'bsm.gamemode'
+  gamemode:
+    self: 'bsm.gamemode'
+    other: 'bsm.gamemode.other'

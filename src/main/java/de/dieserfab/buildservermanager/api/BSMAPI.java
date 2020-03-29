@@ -363,7 +363,6 @@ public class BSMAPI {
                         if (config.isConfigurationSection("domains." + domain + ".categories." + category + ".maps")) {
                             for (String map : config.getConfigurationSection("domains." + domain + ".categories." + category + ".maps").getKeys(false)) {
                                 maps.add(config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
-                                ;
                             }
                         }
                     }
