@@ -10,3 +10,10 @@ awareness_message: true
 # at 0)
 # Settings this to -1 will disable the emerald
 emerald_slot: 8
+# Every added Map in this list wont be treated as unclassified if it isnt present in the maps.yml
+# If you want every single map to be treated as possible unclassified just delete all the lines except one
+# with no content
+exempt_classify:
+  - 'world'
+  - 'world_nether'
+  - 'world_the_end'

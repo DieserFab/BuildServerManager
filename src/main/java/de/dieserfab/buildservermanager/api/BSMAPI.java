@@ -381,7 +381,7 @@ public class BSMAPI {
     public List<String> getMapsToClassify() {
         List<String> maps = new ArrayList<>();
         for (String string : Bukkit.getWorldContainer().list()) {
-            if (string.equalsIgnoreCase("world") || string.equalsIgnoreCase("world_the_end") || string.equalsIgnoreCase("world_nether"))
+            if (BSM.getInstance().getConfig().getStringList("exempt_classify").stream().anyMatch(string::equalsIgnoreCase))
                 continue;
             File file = new File(string);
             if (file.isDirectory()) {
