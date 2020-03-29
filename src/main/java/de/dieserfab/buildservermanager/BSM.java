@@ -39,6 +39,7 @@ public class BSM extends JavaPlugin {
         api = new BSMAPI();
         loadModules();
         loadListener(Bukkit.getPluginManager());
+        api.getAllDeclaredMaps();
         Logger.l("iSuccessfully loaded the Plugin in " + (System.currentTimeMillis() - startupTime) + " milliseconds");
     }
 

@@ -4,4 +4,6 @@ main: de.dieserfab.buildservermanager.BSM
 author: DieserFab
 commands:
   maps:
+    aliases: [maps, map, m]
   gamemode:
+    aliases: [gamemode, gm]

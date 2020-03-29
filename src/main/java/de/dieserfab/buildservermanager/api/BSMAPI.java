@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -204,9 +205,13 @@ public class BSMAPI {
                     Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
                     return false;
                 }
+                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type));
+                config.set(path + ".displayname", name);
+                config.set(path + ".type", type);
+                mapsConfig.save();
+
                 try {
                     WorldCreator creator;
-                    World world;
                     switch (type.toLowerCase()) {
                         case "void":
                             creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(null, null));
@@ -225,15 +230,17 @@ public class BSMAPI {
                             Logger.l("eError wrong type entered try: void, nether, end, normal");
                             return false;
                     }
-                    world = creator.createWorld();
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            creator.createWorld();
+                        }
+                    }.runTask(BSM.getInstance());
+
                 } catch (Exception e) {
                     Logger.l("eError while creating the world:" + e.getMessage());
                     return false;
                 }
-                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type));
-                config.set(path + ".displayname", name);
-                config.set(path + ".type", type);
-                mapsConfig.save();
                 return true;
             }
             Logger.l("eFailed to add a map to the domain " + domain + " the domain doesnt have a category with the name " + category);
@@ -305,6 +312,26 @@ public class BSMAPI {
         if (config.isConfigurationSection(path)) {
             for (String map : config.getConfigurationSection(path).getKeys(false)) {
                 maps.add(new Map(getDisplayname(path + "." + map), getType(path + "." + map), true));
+            }
+        }
+        return maps;
+    }
+
+    public List<String> getAllDeclaredMaps() {
+        FileConfiguration config = BSM.getInstance().getConfigManager().getMapsConfig().getConfig();
+        List<String> maps = new ArrayList<>();
+        if (config.isConfigurationSection("domains")) {
+            for (String domain : config.getConfigurationSection("domains").getKeys(false)) {
+                if (config.isConfigurationSection("domains." + domain + ".categories")) {
+                    for (String category : config.getConfigurationSection("domains." + domain + ".categories").getKeys(false)) {
+                        if (config.isConfigurationSection("domains." + domain + ".categories." + category + ".maps")) {
+                            for (String map : config.getConfigurationSection("domains." + domain + ".categories." + category + ".maps").getKeys(false)) {
+                                maps.add(config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
+                                Logger.l("iMap:" + config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
+                            }
+                        }
+                    }
+                }
             }
         }
         return maps;
