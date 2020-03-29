@@ -48,18 +48,19 @@ public class DomainMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_DOMAINMENU_BACK)) {
+        String itemName = itemUsed.getItemMeta().getDisplayName();
+        if (itemName.equalsIgnoreCase(Messages.GUIS_DOMAINMENU_BACK)) {
             BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
             return;
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_DOMAINMENU_NO_DOMAIN) || itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_DOMAINMENU_CREATE_DOMAIN)) {
+        if (itemName.equalsIgnoreCase(Messages.GUIS_DOMAINMENU_NO_DOMAIN) || itemName.equalsIgnoreCase(Messages.GUIS_DOMAINMENU_CREATE_DOMAIN)) {
             create.add(player);
             player.closeInventory();
             player.sendMessage(Messages.GUIS_DOMAINMENU_CREATE_MSG);
             return;
         }
-        String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName()).replaceAll("\\(.*\\)", "");
-        new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + string + " (§a" + BSMAPI.getInstance().getCategories(string).size() + "§8§l)", string.toLowerCase()).setDomain(string).openGui(player);
+        String category = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
+        new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + category + " (§a" + BSMAPI.getInstance().getCategories(category).size() + "§8§l)", category.toLowerCase()).setDomain(category).openGui(player);
     }
 
     private List<Player> create = new ArrayList<>();

@@ -65,6 +65,11 @@ public abstract class AbstractGui implements Listener {
      */
     public abstract boolean onPlayerChat(Player player, String message);
 
+    public void reopenGui(Player player){
+        player.closeInventory();
+        openGui(player);
+    }
+
     public AbstractGui openGui(Player player) {
         onGuiOpen(player);
         BSM.getInstance().getGuiManager().addCurrentGui(player, this);
@@ -95,7 +100,7 @@ public abstract class AbstractGui implements Listener {
 
     public enum SlotPosition {
 
-        SMALL_CHEST_MIDDLE_LEFT(9), SMALL_CHEST_MIDDLE(13), SMALL_CHEST_MIDDLE_RIGHT(17), SMALL_CHEST_BOTTOM_RIGHT(26), BIG_CHEST_BOTTOM_LEFT(45),BIG_CHEST_BOTTOM_RIGHT(53),SMALL_CHEST_BOTTOM_LEFT(18);
+        CHEST_UPPER_RIGHT(8),SMALL_CHEST_MIDDLE_LEFT(9), SMALL_CHEST_MIDDLE(13), SMALL_CHEST_MIDDLE_RIGHT(17), SMALL_CHEST_BOTTOM_RIGHT(26), BIG_CHEST_BOTTOM_LEFT(45),BIG_CHEST_BOTTOM_RIGHT(53),SMALL_CHEST_BOTTOM_LEFT(18);
 
         @Getter
         private int slot;

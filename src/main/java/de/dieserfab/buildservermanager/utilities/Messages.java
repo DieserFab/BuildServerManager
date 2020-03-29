@@ -180,6 +180,17 @@ public class Messages {
     public static String GUIS_MAINMENU_PLAYER_UTILITY;
     @LoadMessage(path = "guis.main_menu.player_utility_lore")
     public static List<String> GUIS_MAINMENU_PLAYER_UTILITY_LORE;
+    @LoadMessage(path = "guis.main_menu.maps_to_classify")
+    public static String GUIS_MAINMENU_MAPS_TO_CLASSIFY;
+    @LoadMessage(path = "guis.main_menu.maps_to_classify_lore")
+    public static List<String> GUIS_MAINMENU_MAPS_TO_CLASSIFY_LORE;
+
+    @LoadMessage(path = "guis.classify_menu.title")
+    public static String GUIS_CLASSIFYMENU_TITLE;
+    @LoadMessage(path = "guis.classify_menu.domain_title")
+    public static String GUIS_CLASSIFYMENU_DOMAIN_TITLE;
+    @LoadMessage(path = "guis.classify_menu.category_title")
+    public static String GUIS_CLASSIFYMENU_CATEGORY_TITLE;
 
     /* Item Messages */
 

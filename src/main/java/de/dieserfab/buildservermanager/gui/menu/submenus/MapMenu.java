@@ -63,34 +63,34 @@ public class MapMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPMENU_BACK)) {
+        String itemName = itemUsed.getItemMeta().getDisplayName();
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_BACK)) {
             new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + getDomain() + " (§a" + BSMAPI.getInstance().getCategories(getDomain()).size() + "§8§l)", getDomain().toLowerCase()).setDomain(getDomain()).openGui(player);
             return;
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPMENU_NO_MAP) || itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPMENU_CREATE_MAP)) {
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_NO_MAP) || itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_CREATE_MAP)) {
             create.add(player);
             player.closeInventory();
             player.sendMessage(Messages.GUIS_MAPMENU_CREATE_MSG);
             return;
         }
         if (clickType == ClickType.LEFT) {
-
-            String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName()).replaceAll("\\(.*\\)", "");
-            if (Bukkit.getWorld(string) == null) {
-                WorldCreator creator = new WorldCreator(string);
+            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
+            if (Bukkit.getWorld(map) == null) {
+                WorldCreator creator = new WorldCreator(map);
                 try {
                     Bukkit.getServer().createWorld(creator);
-                    player.performCommand("maps tp " + string);
+                    player.performCommand("maps tp " + map);
                 } catch (Exception e) {
                     Logger.l("eError while teleporting:" + e.getMessage());
                 }
             } else {
-                player.teleport(Bukkit.getWorld(string).getSpawnLocation());
+                player.teleport(Bukkit.getWorld(map).getSpawnLocation());
             }
         }
         if (clickType == ClickType.RIGHT) {
-            String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName()).replaceAll("\\(.*\\)", "");
-            new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + string + loadPrefix(!(Bukkit.getWorld(string) == null)), string.toLowerCase()).setValue(getDomain(), getCategory()).openGui(player);
+            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
+            new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + map + loadPrefix(!(Bukkit.getWorld(map) == null)), map.toLowerCase()).setValue(getDomain(), getCategory()).openGui(player);
         }
     }
 

@@ -29,20 +29,20 @@ public class PlayerUtilitiyMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        String name = itemUsed.getItemMeta().getDisplayName();
-        if(name.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_BACK)){
+        String itemName = itemUsed.getItemMeta().getDisplayName();
+        if(itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_BACK)){
             BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
         }
-        if(name.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_0)){
+        if(itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_0)){
             player.performCommand("gamemode 0");
         }
-        if(name.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_1)){
+        if(itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_1)){
             player.performCommand("gamemode 1");
         }
-        if(name.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_2)){
+        if(itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_2)){
             player.performCommand("gamemode 2");
         }
-        if(name.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_3)){
+        if(itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_3)){
             player.performCommand("gamemode 3");
         }
     }

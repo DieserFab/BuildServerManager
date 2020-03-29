@@ -52,17 +52,18 @@ public class MapSettingsMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_BACK)) {
+        String itemName = itemUsed.getItemMeta().getDisplayName();
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_BACK)) {
             new MapMenu(GuiType.BIG_CHEST, "§8§l" + getCategory() + " (§a" + BSMAPI.getInstance().getMaps(getDomain(), getCategory()).size() + "§8§l)", getCategory().toLowerCase()).setValues(getDomain(), getCategory()).openGui(player);
             return;
         }
 
         if (clickType == ClickType.CONTROL_DROP) {
-            if (itemUsed.getItemMeta().getDisplayName().equals(Messages.GUIS_MAPSETTINGSMENU_DELETE)) {
+            if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_DELETE)) {
                 player.performCommand("maps removeMap " + getDomain() + " " + getCategory() + " " + getName());
             }
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_LOAD)) {
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_LOAD)) {
             if (Bukkit.getWorld(ChatColor.stripColor(getTitle())) == null) {
                 WorldCreator creator = new WorldCreator(ChatColor.stripColor(getName()));
                 try {
@@ -74,10 +75,10 @@ public class MapSettingsMenu extends AbstractGui {
                 }
             }
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_TELEPORT)) {
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_TELEPORT)) {
             player.performCommand("maps tp " + getName());
         }
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_UNLOAD)) {
+        if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_UNLOAD)) {
             try {
                 Bukkit.getServer().unloadWorld(Bukkit.getWorld(ChatColor.stripColor(getName())), true);
                 player.sendMessage(Messages.GUIS_MAPSETTINGSMENU_UNLOAD_SUCCESS);

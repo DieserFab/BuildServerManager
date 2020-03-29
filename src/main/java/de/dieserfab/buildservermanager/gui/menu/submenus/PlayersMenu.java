@@ -33,13 +33,14 @@ public class PlayersMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_PLAYERSMENU_BACK)) {
+        String itemName = itemUsed.getItemMeta().getDisplayName();
+        if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERSMENU_BACK)) {
             BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
             return;
         }
-        String string = ChatColor.stripColor(itemUsed.getItemMeta().getDisplayName());
+        String target = ChatColor.stripColor(itemName);
         try {
-            Player p = Bukkit.getPlayer(string);
+            Player p = Bukkit.getPlayer(target);
             player.sendMessage(Messages.GUIS_PLAYERSMENU_TELEPORT_SUCCESS.replace("%player%", p.getName()));
             player.teleport(p.getLocation());
         } catch (Exception e) {

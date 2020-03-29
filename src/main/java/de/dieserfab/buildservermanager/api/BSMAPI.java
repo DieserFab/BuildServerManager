@@ -251,6 +251,37 @@ public class BSMAPI {
     }
 
     /**
+     * Adds a new Map to the maps.yml file and to the maps cache
+     *
+     * @param domain   is the name of the Domain
+     * @param category is the name of the Category
+     * @param name     is the name of the Map
+     * @return
+     */
+    public boolean addMap(String domain, String category, String name) {
+        MapsConfig mapsConfig = BSM.getInstance().getConfigManager().getMapsConfig();
+        FileConfiguration config = mapsConfig.getConfig();
+        String path = "domains." + domain.toLowerCase() + ".categories." + category.toLowerCase() + ".maps." + name.toLowerCase();
+        if (config.isConfigurationSection("domains." + domain.toLowerCase())) {
+            if (config.isConfigurationSection("domains." + domain.toLowerCase() + ".categories." + category.toLowerCase())) {
+                if (config.isConfigurationSection(path)) {
+                    Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
+                    return false;
+                }
+                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, "Unknown"));
+                config.set(path + ".displayname", name);
+                config.set(path + ".type", "Unknown");
+                mapsConfig.save();
+                return true;
+            }
+            Logger.l("eFailed to add a map to the domain " + domain + " the domain doesnt have a category with the name " + category);
+            return false;
+        }
+        Logger.l("eFailed to add a map to the domain " + domain + " that domain doesnt exist.");
+        return false;
+    }
+
+    /**
      * Removes the Map from the maps.yml file and from the Map cache and it deletes the World from the Disk
      *
      * @param domain   is the name of the Maps Domain
@@ -317,6 +348,11 @@ public class BSMAPI {
         return maps;
     }
 
+    /**
+     * Returns a List with String of all Maps that got declared in the maps.yml file
+     *
+     * @return
+     */
     public List<String> getAllDeclaredMaps() {
         FileConfiguration config = BSM.getInstance().getConfigManager().getMapsConfig().getConfig();
         List<String> maps = new ArrayList<>();
@@ -327,10 +363,30 @@ public class BSMAPI {
                         if (config.isConfigurationSection("domains." + domain + ".categories." + category + ".maps")) {
                             for (String map : config.getConfigurationSection("domains." + domain + ".categories." + category + ".maps").getKeys(false)) {
                                 maps.add(config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
-                                Logger.l("iMap:" + config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
+                                ;
                             }
                         }
                     }
+                }
+            }
+        }
+        return maps;
+    }
+
+    /**
+     * Returns a List of String with names of Maps that arent categorized in the maps.yml file but need to
+     *
+     * @return
+     */
+    public List<String> getMapsToClassify() {
+        List<String> maps = new ArrayList<>();
+        for (String string : Bukkit.getWorldContainer().list()) {
+            if (string.equalsIgnoreCase("world") || string.equalsIgnoreCase("world_the_end") || string.equalsIgnoreCase("world_nether"))
+                continue;
+            File file = new File(string);
+            if (file.isDirectory()) {
+                if (new File(string + "/level.dat").exists() && !getAllDeclaredMaps().contains(string)) {
+                    maps.add(string);
                 }
             }
         }

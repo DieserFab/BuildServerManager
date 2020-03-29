@@ -152,6 +152,10 @@ guis:
       - '§7To teleport to the player click here.'
       - ' '
   main_menu:
+    maps_to_classify: '§c§lThere are maps that need to be classified.'
+    maps_to_classify_lore:
+      - '§cClick here to classify them.'
+      - ' '
     title: '§8§lMain Menu'
     player_utility: '§8§lPlayer Utility'
     player_utility_lore:
@@ -167,3 +171,7 @@ guis:
       - ' '
     players_error: '§cError couldnt load Playerhead'
     information: '§8§lInformation'
+  classify_menu:
+    title: '§8Choose a Map to classify'
+    domain_title: '§8Chose a Domain for the Map'
+    category_title: '§8Choose a Category for the Map'

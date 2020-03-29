@@ -34,6 +34,7 @@ de\dieserfab\buildservermanager\gui\menu\submenus\PlayerUtilitiyMenu.class
 de\dieserfab\buildservermanager\listener\InteractListener.class
 de\dieserfab\buildservermanager\config\Config.class
 de\dieserfab\buildservermanager\gui\menu\submenus\CategoryMenu.class
+de\dieserfab\buildservermanager\gui\menu\submenus\ClassifyMenu.class
 de\dieserfab\buildservermanager\config\configs\MapsConfig.class
 de\dieserfab\buildservermanager\commands\AbstractCommand.class
 de\dieserfab\buildservermanager\listener\ConnectionListener.class
