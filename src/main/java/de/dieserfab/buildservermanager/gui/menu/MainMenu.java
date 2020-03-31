@@ -31,7 +31,7 @@ public class MainMenu extends AbstractGui {
         setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, Messages.GUIS_MAINMENU_INFORMATION, Arrays.asList(
                 "§7Plugin Version: §a" + BSM.getInstance().getDescription().getVersion(),
                 "§7CPU Cores: §a" + Runtime.getRuntime().availableProcessors(),
-                "§7Available RAM: §a" + FileUtilities.bytesToMb(Runtime.getRuntime().maxMemory()) + "MB",
+                "§7Available RAM: §a" + FileUtilities.readableFileSize(Runtime.getRuntime().maxMemory()),
                 "§7Map Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
                 "§7All declared Maps Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
                 "§7Exempt Map Count: §a" + BSM.getInstance().getConfig().getList("exempt_classify").size(),

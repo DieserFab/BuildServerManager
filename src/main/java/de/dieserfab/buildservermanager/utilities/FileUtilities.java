@@ -5,53 +5,37 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.CharacterIterator;
+import java.text.DecimalFormat;
 import java.text.StringCharacterIterator;
+import java.util.Arrays;
 
 public class FileUtilities {
 
     /**
      * From Stackoverflow
-     * @param bytes
+     *
+     * @param size
      * @return
      */
-    public static String humanReadableByteCountBin(long bytes) {
-        long absB = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
-        if (absB < 1024) {
-            return bytes + " B";
+    public static String readableFileSize(long size) {
+        if (size <= 0) {
+            return "0";
         }
-        long value = absB;
-        CharacterIterator ci = new StringCharacterIterator("KMGTPE");
-        for (int i = 40; i >= 0 && absB > 0xfffccccccccccccL >> i; i -= 10) {
-            value >>= 10;
-            ci.next();
-        }
-        value *= Long.signum(bytes);
-        return String.format("%.1f %cB", value / 1024.0, ci.current());
+        final String[] units = new String[]{"B", "KB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+        return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroups))
+                + " " + units[digitGroups];
     }
 
-    /**
-     * All those methodes were taken out of apache commons io
-     */
-    public static long sizeOfDirectory(final File directory) {
-        final File[] files = directory.listFiles();
-        if (files == null) {  // null if security restricted
-            return 0L;
-        }
+    public static long folderSize(File folder) {
         long size = 0;
-
-        for (final File file : files) {
-            try {
-                if (!isSymlink(file)) {
-                    size += sizeOf0(file); // internal method
-                    if (size < 0) {
-                        break;
-                    }
-                }
-            } catch (final IOException ioe) {
-                // Ignore exceptions caught when asking if a File is a symlink.
+        File[] fileList = folder.listFiles();
+        for (File file : fileList) {
+            if (!file.isFile()) {
+                size += folderSize(file);
             }
+            size += file.length();
         }
-
         return size;
     }
 
@@ -62,19 +46,6 @@ public class FileUtilities {
         return Files.isSymbolicLink(file.toPath());
     }
 
-    public static long sizeOf0(final File file) {
-        if (file.isDirectory()) {
-            return sizeOfDirectory(file);
-        } else {
-            return file.length(); // will be 0 if file does not exist
-        }
-    }
-
-    private static final long  MEGABYTE = 1024L * 1024L;
-
-    public static long bytesToMb(long bytes) {
-        return bytes / MEGABYTE ;
-    }
 
     public static void deleteDirectory(final File directory) throws IOException {
         if (!directory.exists()) {

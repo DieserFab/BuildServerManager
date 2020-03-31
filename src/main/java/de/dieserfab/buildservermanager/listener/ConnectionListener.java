@@ -17,6 +17,7 @@ public class ConnectionListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        player.teleport(player.getWorld().getSpawnLocation());
         if (BSM.getInstance().getConfig().getBoolean("awareness_message")) {
             player.sendMessage(AWARENESS_NOTIFICATION);
         }
