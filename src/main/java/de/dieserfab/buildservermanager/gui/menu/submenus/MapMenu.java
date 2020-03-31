@@ -73,7 +73,7 @@ public class MapMenu extends AbstractGui {
             }
         }
         if (clickType == ClickType.RIGHT) {
-            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", ""); 
+            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
             new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + map + String.valueOf(Bukkit.getWorld(map) == null).replaceAll("true", "§8(§cnot loaded§8)").replaceAll("false", "§8(§aloaded§8)"),
                     getName() + "$" + map, player);
         }

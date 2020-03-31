@@ -26,11 +26,14 @@ public class MainMenu extends AbstractGui {
         setItem(SlotPosition.SMALL_CHEST_MIDDLE_LEFT.getSlot() + 2, new ItemCreator(Material.REDSTONE, 1, Messages.GUIS_MAINMENU_PLAYER_UTILITY, Messages.GUIS_MAINMENU_PLAYER_UTILITY_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.PAPER, 1, Messages.GUIS_MAINMENU_MAP_SELECTION, Messages.GUIS_MAINMENU_MAP_SELECTION_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, Messages.GUIS_MAINMENU_INFORMATION, Arrays.asList(
-                "§7Plugin Version: " + BSM.getInstance().getDescription().getVersion(),
-                "§7CPU Cores: " + Runtime.getRuntime().availableProcessors(),
-                "§7Available RAM: " + FileUtilities.bytesToMb(Runtime.getRuntime().maxMemory()) + "MB",
-                "§7Map Count: " + BSMAPI.getInstance().getAllDeclaredMaps().size(),
-                "")).create());
+                "§7Plugin Version: §a" + BSM.getInstance().getDescription().getVersion(),
+                "§7CPU Cores: §a" + Runtime.getRuntime().availableProcessors(),
+                "§7Available RAM: §a" + FileUtilities.bytesToMb(Runtime.getRuntime().maxMemory()) + "MB",
+                "§7Map Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
+                "§7All declared Maps Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
+                "§7Exempt Map Count: §a" + BSM.getInstance().getConfig().getList("exempt_classify").size(),
+                "§7Unclassified Map Count: §a" + BSMAPI.getInstance().getMapsToClassify().size(),
+                " ")).create());
         setItem(SlotPosition.CHEST_UPPER_RIGHT.getSlot(), BSMAPI.getInstance().getMapsToClassify().isEmpty() ? null : new ItemCreator(GuiHead.ALERT.getId(), 1, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY_LORE).create());
     }
 
