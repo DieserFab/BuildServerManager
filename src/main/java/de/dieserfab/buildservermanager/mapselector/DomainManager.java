@@ -4,7 +4,6 @@ import de.dieserfab.buildservermanager.api.BSMAPI;
 import de.dieserfab.buildservermanager.utilities.Logger;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DomainManager {
@@ -15,21 +14,15 @@ public class DomainManager {
     public DomainManager() {
         Logger.l("iCaching all Domains");
         try {
-            this.domains = new ArrayList<>();
-            cacheDomains();
+            this.domains = BSMAPI.getInstance().getDomains();
             Logger.l("iSuccessfully cached all Domains");
         }catch (Exception e){
             Logger.l("eError while caching the Domains:"+e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public Domain getDomain(String name) {
         return domains.stream().filter(domain -> domain.getName().equalsIgnoreCase(name)).findAny().orElse(null);
     }
-
-
-    public void cacheDomains() {
-        this.domains = BSMAPI.getInstance().getDomains();
-    }
-
 }

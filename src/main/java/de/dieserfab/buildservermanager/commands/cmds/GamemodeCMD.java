@@ -21,7 +21,6 @@ public class GamemodeCMD extends AbstractCommand {
 
     @Override
     public void handleCommandAsConsole(String[] args) {
-
     }
 
     @Override

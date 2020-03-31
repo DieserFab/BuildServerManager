@@ -2,7 +2,6 @@ package de.dieserfab.buildservermanager.api;
 
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.config.configs.MapsConfig;
-import de.dieserfab.buildservermanager.gui.AbstractGui;
 import de.dieserfab.buildservermanager.mapselector.Category;
 import de.dieserfab.buildservermanager.mapselector.Domain;
 import de.dieserfab.buildservermanager.mapselector.Map;
@@ -119,7 +118,7 @@ public class BSMAPI {
                 Logger.l("eFailed to add a category to the domain " + domain + " the domain already has a category with that name.");
                 return false;
             }
-            BSM.getInstance().getDomainManager().getDomain(domain).getCategories().add(new Category(name, getMaps(domain, name)));
+            BSM.getInstance().getDomainManager().getDomain(domain).getCategories().add(new Category(name, getMaps(domain, name), domain));
             config.set("domains." + domain.toLowerCase() + ".categories." + name.toLowerCase() + ".displayname", name);
             mapsConfig.save();
             return true;
@@ -175,7 +174,7 @@ public class BSMAPI {
         String path = "domains." + domain.toLowerCase() + ".categories";
         if (config.isConfigurationSection(path)) {
             for (String category : config.getConfigurationSection(path).getKeys(false)) {
-                categories.add(new Category(getDisplayname(path + "." + category), getMaps(domain, category)));
+                categories.add(new Category(getDisplayname(path + "." + category), getMaps(domain, category), domain));
             }
         }
         return categories;
@@ -200,7 +199,7 @@ public class BSMAPI {
                     Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
                     return false;
                 }
-                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type));
+                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type, domain, category));
                 config.set(path + ".displayname", name);
                 config.set(path + ".type", type);
                 mapsConfig.save();
@@ -263,7 +262,7 @@ public class BSMAPI {
                     Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
                     return false;
                 }
-                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, "Unknown"));
+                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, "Unknown", domain, category));
                 config.set(path + ".displayname", name);
                 config.set(path + ".type", "Unknown");
                 mapsConfig.save();
@@ -356,7 +355,7 @@ public class BSMAPI {
         String path = "domains." + domain.toLowerCase() + ".categories." + category.toLowerCase() + ".maps";
         if (config.isConfigurationSection(path)) {
             for (String map : config.getConfigurationSection(path).getKeys(false)) {
-                maps.add(new Map(getDisplayname(path + "." + map), getType(path + "." + map), true));
+                maps.add(new Map(getDisplayname(path + "." + map), getType(path + "." + map), domain, category, true));
             }
         }
         return maps;

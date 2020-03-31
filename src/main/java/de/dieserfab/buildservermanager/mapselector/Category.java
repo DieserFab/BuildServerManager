@@ -10,11 +10,12 @@ public class Category {
     private List<Map> maps;
 
     @Getter
-    private String name;
+    private String name,domain;
 
-    public Category(String name, List<Map> maps) {
+    public Category(String name, List<Map> maps, String domain) {
         this.maps = maps;
         this.name = name;
+        this.domain = domain;
     }
 
     public Map getMap(String name){

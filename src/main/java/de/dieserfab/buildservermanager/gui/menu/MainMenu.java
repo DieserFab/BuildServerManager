@@ -4,9 +4,12 @@ import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.api.BSMAPI;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
 import de.dieserfab.buildservermanager.gui.menu.submenus.*;
+import de.dieserfab.buildservermanager.mapselector.Map;
 import de.dieserfab.buildservermanager.utilities.FileUtilities;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
 import de.dieserfab.buildservermanager.utilities.Messages;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -35,6 +38,7 @@ public class MainMenu extends AbstractGui {
                 "§7Unclassified Map Count: §a" + BSMAPI.getInstance().getMapsToClassify().size(),
                 " ")).create());
         setItem(SlotPosition.CHEST_UPPER_RIGHT.getSlot(), BSMAPI.getInstance().getMapsToClassify().isEmpty() ? null : new ItemCreator(GuiHead.ALERT.getId(), 1, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY_LORE).create());
+        setItem(SlotPosition.SMALL_CHEST_BOTTOM_MIDDLE.getSlot(), new ItemCreator(Material.BOOK, 1, "§8§lCurrent Map(§a" + getPlayer().getWorld().getName() + "§8§l)", BSMAPI.getInstance().getMap(getPlayer().getWorld().getName()) == null ? Arrays.asList("§7This Map doesnt allow changing its settings as its", "§7not cached as a map inside the maps.yml file.") : null).create());
     }
 
     @Override
@@ -55,6 +59,13 @@ public class MainMenu extends AbstractGui {
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY)) {
             new ClassifyMenu(GuiType.BIG_CHEST, Messages.GUIS_CLASSIFYMENU_TITLE, player.getName().toLowerCase() + "$classifymenu", player);
+        }
+        String currentMap = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
+        if (currentMap.equalsIgnoreCase("Current Map")) {
+            Map map = BSMAPI.getInstance().getMap(getPlayer().getWorld().getName());
+            if (map != null) {
+                new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + getPlayer().getWorld().getName() + "§8(§aloaded§8)", map.getDomain()+ "$" + map.getCategory() + "$" + map.getName(), player);
+            }
         }
     }
 

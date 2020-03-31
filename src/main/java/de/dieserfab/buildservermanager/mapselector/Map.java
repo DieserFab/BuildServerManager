@@ -9,16 +9,21 @@ import org.bukkit.WorldCreator;
 public class Map {
 
     @Getter
-    private String name, type;
+    private String name, type,domain,category;
 
-    public Map(String name, String type) {
+
+    public Map(String name, String type, String domain, String category) {
         this.name = name;
         this.type = type;
+        this.domain = domain;
+        this.category = category;
     }
 
-    public Map(String name, String type, boolean load) {
+    public Map(String name, String type,String domain,String category, boolean load) {
         this.name = name;
         this.type = type;
+        this.domain = domain;
+        this.category = category;
         if (Bukkit.getWorld(name) == null && BSM.getInstance().getConfig().getBoolean("load_maps_on_server_startup")) {
             WorldCreator creator = new WorldCreator(name);
             try {
