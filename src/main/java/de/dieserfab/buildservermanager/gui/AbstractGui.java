@@ -116,6 +116,7 @@ public abstract class AbstractGui implements Listener {
         SMALL_CHEST_MIDDLE_LEFT(9),
         SMALL_CHEST_MIDDLE(13),
         SMALL_CHEST_MIDDLE_RIGHT(17),
+        SMALL_CHEST_BOTTOM_MIDDLE(22),
         SMALL_CHEST_BOTTOM_RIGHT(26),
         BIG_CHEST_BOTTOM_LEFT(45),
         BIG_CHEST_BOTTOM_RIGHT(53),
