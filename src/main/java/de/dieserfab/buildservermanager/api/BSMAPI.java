@@ -52,8 +52,6 @@ public class BSMAPI {
         BSM.getInstance().getDomainManager().getDomains().add(new Domain(name, getCategories(name)));
         config.set("domains." + name.toLowerCase() + ".displayname", name);
         mapsConfig.save();
-        BSM.getInstance().getGuiManager().getGui("domainmenu").setTitle("§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)");
-        BSM.getInstance().getGuiManager().getGui("domainmenu").setInventory(Bukkit.createInventory(null, AbstractGui.GuiType.SMALL_CHEST.getSize(), "§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)"));
         return true;
     }
 
@@ -74,9 +72,6 @@ public class BSMAPI {
         BSM.getInstance().getDomainManager().getDomains().remove(getDomain(name));
         config.set("domains." + name.toLowerCase(), null);
         mapsConfig.save();
-        BSM.getInstance().getGuiManager().getGui("domainmenu").setTitle("§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)");
-        BSM.getInstance().getGuiManager().getGui("domainmenu").setInventory(Bukkit.createInventory(null, AbstractGui.GuiType.SMALL_CHEST.getSize(), "§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)"));
-
         return true;
     }
 
@@ -329,6 +324,25 @@ public class BSMAPI {
     }
 
     /**
+     * Returns the Object of a Map based on the parameter of the constructor it returns null if it was unable
+     * to find a Map with the name
+     *
+     * @param name the name of the Map
+     * @return
+     */
+    public Map getMap(String name) {
+        for (Domain domain : BSM.getInstance().getDomainManager().getDomains()) {
+            for (Category category : domain.getCategories()) {
+                for (Map map : category.getMaps()) {
+                    if (map.getName().equalsIgnoreCase(name))
+                        return map;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns a List of all Maps currently present in the maps.yml based on the parameters of the constructor
      * file if no maps are present it returns an empty List
      *
@@ -356,16 +370,16 @@ public class BSMAPI {
     public List<String> getAllDeclaredMaps() {
         FileConfiguration config = BSM.getInstance().getConfigManager().getMapsConfig().getConfig();
         List<String> maps = new ArrayList<>();
-        if (config.isConfigurationSection("domains")) {
-            for (String domain : config.getConfigurationSection("domains").getKeys(false)) {
-                if (config.isConfigurationSection("domains." + domain + ".categories")) {
-                    for (String category : config.getConfigurationSection("domains." + domain + ".categories").getKeys(false)) {
-                        if (config.isConfigurationSection("domains." + domain + ".categories." + category + ".maps")) {
-                            for (String map : config.getConfigurationSection("domains." + domain + ".categories." + category + ".maps").getKeys(false)) {
-                                maps.add(config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
-                            }
-                        }
-                    }
+        if (!config.isConfigurationSection("domains"))
+            return maps;
+        for (String domain : config.getConfigurationSection("domains").getKeys(false)) {
+            if (!config.isConfigurationSection("domains." + domain + ".categories"))
+                continue;
+            for (String category : config.getConfigurationSection("domains." + domain + ".categories").getKeys(false)) {
+                if (!config.isConfigurationSection("domains." + domain + ".categories." + category + ".maps"))
+                    continue;
+                for (String map : config.getConfigurationSection("domains." + domain + ".categories." + category + ".maps").getKeys(false)) {
+                    maps.add(config.getString("domains." + domain + ".categories." + category + ".maps." + map + ".displayname"));
                 }
             }
         }

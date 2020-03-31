@@ -15,16 +15,16 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 public class ClassifyMenu extends AbstractGui {
-    public ClassifyMenu(GuiType guiType, String title, String name) {
-        super(guiType, title, name);
+    public ClassifyMenu(GuiType guiType, String title, String name, Player player) {
+        super(guiType, title, name, player);
     }
 
     private int state = 0;
     private String classification;
+    private String input;
 
     @Override
     public void init() {
-        getInventory().clear();
         int count = 0;
         switch (state) {
             case 0:
@@ -64,7 +64,6 @@ public class ClassifyMenu extends AbstractGui {
         init();
     }
 
-    private String input;
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
@@ -120,7 +119,7 @@ public class ClassifyMenu extends AbstractGui {
                 return true;
             }
             player.performCommand("maps addDomain " + message);
-            BSM.getInstance().getGuiManager().getCurrentGuis().get(player).openGui(player);
+            openGui(player);
             input = null;
             return true;
         }
@@ -132,7 +131,7 @@ public class ClassifyMenu extends AbstractGui {
             }
             String[] parts = classification.split(" ");
             player.performCommand("maps addCategory " + parts[1] + " " + strings[0]);
-            BSM.getInstance().getGuiManager().getCurrentGuis().get(player).openGui(player);
+            openGui(player);
             input = null;
             return true;
         }

@@ -1,9 +1,9 @@
 package de.dieserfab.buildservermanager.commands.cmds;
 
 import de.dieserfab.buildservermanager.commands.AbstractCommand;
-import de.dieserfab.buildservermanager.utilities.CommandUtilities;
 import de.dieserfab.buildservermanager.utilities.Messages;
 import de.dieserfab.buildservermanager.utilities.Permissions;
+import de.dieserfab.buildservermanager.utilities.StringUtilities;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -27,7 +27,7 @@ public class GamemodeCMD extends AbstractCommand {
     @Override
     public void handleCommandAsPlayer(Player player, String[] args) {
         if (args.length == 1) {
-            if (CommandUtilities.isStringNumeric(args[0]) ? CommandUtilities.isStringBetween(args[0], 0, 3) : EnumUtils.isValidEnum(GameMode.class, args[0].toUpperCase())) {
+            if (StringUtilities.isStringNumeric(args[0]) ? StringUtilities.isStringBetween(args[0], 0, 3) : EnumUtils.isValidEnum(GameMode.class, args[0].toUpperCase())) {
                 if (!hasPermission(player, Permissions.COMMAND_GAMEMODE_SELF))
                     return;
                 GameMode gamemode = GameMode.valueOf(args[0].toUpperCase().replace("0", "SURVIVAL").replace("1", "CREATIVE").replace("2", "ADVENTURE").replace("3", "SPECTATOR"));
@@ -37,7 +37,7 @@ public class GamemodeCMD extends AbstractCommand {
             }
         }
         if (args.length == 2) {
-            if (CommandUtilities.isStringNumeric(args[0]) ? CommandUtilities.isStringBetween(args[0], 0, 3) : EnumUtils.isValidEnum(GameMode.class, args[0].toUpperCase())) {
+            if (StringUtilities.isStringNumeric(args[0]) ? StringUtilities.isStringBetween(args[0], 0, 3) : EnumUtils.isValidEnum(GameMode.class, args[0].toUpperCase())) {
                 if (!hasPermission(player, Permissions.COMMAND_GAMEMODE_OTHER))
                     return;
                 Player target = Bukkit.getPlayer(args[1]);

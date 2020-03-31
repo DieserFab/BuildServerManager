@@ -47,6 +47,14 @@ commands:
 # Gui Messages
 #
 guis:
+  gamerule_menu:
+    back: '§8§lBack to the Map Settings'
+    back_lore:
+      - '§7Click here to get back to the Map Settings.'
+      - ' '
+    type_value: '§7Type the new value in the chat (current:§a%current%§7).'
+    wrong_value: '§7The value you type must be §anumeric §7and cant have any §aspaces§7.'
+    change_value: '§7You changed the value from §a%from% §7to §a%to%§7.'
   player_utility_menu:
     back: '§8§lBack to the Main Menu'
     back_lore:
@@ -113,6 +121,7 @@ guis:
       - '§7Keep in mind loading the Map will cause a short lag.'
       - ' '
   map_settings_menu:
+    gamerule_menu: '§8§lGameRule Settings'
     load:
       item: '§8§lLoad the Map'
       success: '§7Successfully loaded the Map.'

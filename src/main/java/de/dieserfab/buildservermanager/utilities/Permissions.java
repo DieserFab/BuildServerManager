@@ -9,6 +9,7 @@ public class Permissions {
         Logger.l("iLoading Permissions class");
     }
 
+    /* Command Permissions */
     @LoadPermission(path = "commands.maps.open")
     public static String COMMAND_MAPS_OPEN;
     @LoadPermission(path = "commands.maps.tp")

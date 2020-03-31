@@ -21,8 +21,8 @@ public class ConnectionListener implements Listener {
             player.sendMessage(AWARENESS_NOTIFICATION);
         }
         player.getInventory().removeItem(new ItemCreator(Material.EMERALD, 1, Messages.ITEMS_EMERALD_NAME, Messages.ITEMS_EMERALD_LORE).create());
-        if(BSM.getInstance().getConfig().getInt("emerald_slot") >= 0)
-        player.getInventory().setItem(BSM.getInstance().getConfig().getInt("emerald_slot"), new ItemCreator(Material.EMERALD, 1, Messages.ITEMS_EMERALD_NAME, Messages.ITEMS_EMERALD_LORE).create());
+        if (BSM.getInstance().getConfig().getInt("emerald_slot") >= 0)
+            player.getInventory().setItem(BSM.getInstance().getConfig().getInt("emerald_slot"), new ItemCreator(Material.EMERALD, 1, Messages.ITEMS_EMERALD_NAME, Messages.ITEMS_EMERALD_LORE).create());
     }
 
 }

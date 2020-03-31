@@ -16,44 +16,27 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MapMenu extends AbstractGui {
-    public MapMenu(GuiType guiType, String title, String name) {
-        super(guiType, title, name);
+    public MapMenu(GuiType guiType, String title, String name, Player player) {
+        super(guiType, title, name, player);
     }
-
-    @Getter
-    private String domain, category;
-
-    public MapMenu setValues(String domain, String category) {
-        this.domain = domain;
-        this.category = category;
-        postInit();
-        return this;
-    }
-
 
     @Override
     public void init() {
-
-    }
-
-    public void postInit() {
         BSMAPI api = BSMAPI.getInstance();
-        getInventory().clear();
-        if (!api.getMaps(getDomain(), getName()).isEmpty()) {
+        String[] strings = getName().split("\\$");
+        if (!api.getMaps(strings[0], strings[1]).isEmpty()) {
             int count = 0;
-            for (Map map : api.getMaps(getDomain(), getName())) {
-                setItem(count, new ItemCreator(Material.PAPER, count + 1, "§8§l" + map.getName() + loadPrefix(!(Bukkit.getWorld(map.getName()) == null)), Bukkit.getWorld(map.getName()) == null ? Messages.GUIS_MAPMENU_MAP_NOT_LOADED_LORE : Messages.GUIS_MAPMENU_MAP_LORE).create());
+            for (Map map : api.getMaps(strings[0], strings[1])) {
+                setItem(count, new ItemCreator(Material.BOOK, count + 1, "§8§l" + map.getName() + String.valueOf(Bukkit.getWorld(map.getName()) == null).replaceAll("true", "§8(§cnot loaded§8)").replaceAll("false", "§8(§aloaded§8)"), Bukkit.getWorld(map.getName()) == null ? Messages.GUIS_MAPMENU_MAP_NOT_LOADED_LORE : Messages.GUIS_MAPMENU_MAP_LORE).create());
                 count++;
             }
             setItem(SlotPosition.BIG_CHEST_BOTTOM_RIGHT.getSlot(), new ItemCreator(Material.EMERALD_BLOCK, 1, Messages.GUIS_MAPMENU_CREATE_MAP, Messages.GUIS_MAPMENU_CREATE_MAP_LORE).create());
         } else {
-            setItem(31, new ItemCreator(Material.BARRIER, 1, Messages.GUIS_MAPMENU_NO_MAP, Messages.GUIS_MAPMENU_NO_MAP_LORE).create());
+            setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.BARRIER, 1, Messages.GUIS_MAPMENU_NO_MAP, Messages.GUIS_MAPMENU_NO_MAP_LORE).create());
         }
-        setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator("MHF_ArrowLeft", 1, Messages.GUIS_MAPMENU_BACK, Messages.GUIS_MAPMENU_BACK_LORE).create());
+        setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator(GuiHead.LEFT_ARROW.getId(), 1, Messages.GUIS_MAPMENU_BACK, Messages.GUIS_MAPMENU_BACK_LORE).create());
+
     }
 
     @Override
@@ -64,12 +47,13 @@ public class MapMenu extends AbstractGui {
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         String itemName = itemUsed.getItemMeta().getDisplayName();
+        String[] strings = getName().split("\\$");
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_BACK)) {
-            new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + getDomain() + " (§a" + BSMAPI.getInstance().getCategories(getDomain()).size() + "§8§l)", getDomain().toLowerCase()).setDomain(getDomain()).openGui(player);
+            new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + strings[0] + " (§a" + BSMAPI.getInstance().getCategories(strings[0]).size() + "§8§l)", strings[0], player);
             return;
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_NO_MAP) || itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_CREATE_MAP)) {
-            create.add(player);
+            setListenForChat(true);
             player.closeInventory();
             player.sendMessage(Messages.GUIS_MAPMENU_CREATE_MSG);
             return;
@@ -89,30 +73,25 @@ public class MapMenu extends AbstractGui {
             }
         }
         if (clickType == ClickType.RIGHT) {
-            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
-            new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + map + loadPrefix(!(Bukkit.getWorld(map) == null)), map.toLowerCase()).setValue(getDomain(), getCategory()).openGui(player);
+            String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", ""); 
+            new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + map + String.valueOf(Bukkit.getWorld(map) == null).replaceAll("true", "§8(§cnot loaded§8)").replaceAll("false", "§8(§aloaded§8)"),
+                    getName() + "$" + map, player);
         }
     }
 
-    private List<Player> create = new ArrayList<>();
-
     @Override
     public boolean onPlayerChat(Player player, String message) {
-        if (create.contains(player)) {
+        if (isListenForChat()) {
             String[] strings = message.split(" ");
+            String[] values = getName().split("\\$");
             if (strings.length != 2) {
                 player.sendMessage(Messages.GUIS_MAPMENU_WRONG_USAGE);
                 return true;
             }
-            player.performCommand("maps addMap " + getDomain() + " " + getCategory() + " " + strings[0] + " " + strings[1]);
-            create.remove(player);
+            player.performCommand("maps addMap " + values[0] + " " + values[1] + " " + strings[0] + " " + strings[1]);
+            setListenForChat(false);
             return true;
         }
         return false;
     }
-
-    private String loadPrefix(boolean loaded) {
-        return loaded ? "§8(§aloaded§8)" : "§8(§cnot loaded§8)";
-    }
-
 }

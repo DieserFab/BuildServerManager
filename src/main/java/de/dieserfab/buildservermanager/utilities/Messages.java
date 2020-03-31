@@ -56,6 +56,17 @@ public class Messages {
     public static String COMMANDS_GAMEMODE_PLAYER_NOT_FOUND;
 
     /* Gui Messages*/
+    @LoadMessage(path = "guis.gamerule_menu.back")
+    public static String GUIS_GAMERULEMENU_BACK;
+    @LoadMessage(path = "guis.gamerule_menu.back_lore")
+    public static List<String> GUIS_GAMERULEMENU_BACK_LORE;
+    @LoadMessage(path = "guis.gamerule_menu.change_value")
+    public static String GUIS_GAMERULEMENU_CHANGE_VALUE;
+    @LoadMessage(path = "guis.gamerule_menu.wrong_value")
+    public static String GUIS_GAMERULEMENU_WRONG_VALUE;
+    @LoadMessage(path = "guis.gamerule_menu.type_value")
+    public static String GUIS_GAMERULEMENU_TYPE_VALUE;
+
     @LoadMessage(path = "guis.player_utility_menu.back")
     public static String GUIS_PLAYERUTILITYMENU_BACK;
     @LoadMessage(path = "guis.player_utility_menu.back_lore")
@@ -124,6 +135,8 @@ public class Messages {
     @LoadMessage(path = "guis.map_menu.map_lore_not_loaded")
     public static List<String> GUIS_MAPMENU_MAP_NOT_LOADED_LORE;
 
+    @LoadMessage(path = "guis.map_settings_menu.gamerule_menu")
+    public static String GUIS_MAPSETTINGSMENU_GAMERULE_MENU;
     @LoadMessage(path = "guis.map_settings_menu.load.item")
     public static String GUIS_MAPSETTINGSMENU_LOAD;
     @LoadMessage(path = "guis.map_settings_menu.load.success")

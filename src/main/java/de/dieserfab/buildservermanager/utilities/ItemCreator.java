@@ -88,12 +88,12 @@ public class ItemCreator {
     }
 
     /**
-     * Used to get the actual ItemStack of this class
+     * Used to get the actual ItemStack of from this class
      *
      * @return
      */
     public ItemStack create() {
-        return itemStack;
+        return this.itemStack;
     }
 
 }

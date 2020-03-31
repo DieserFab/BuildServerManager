@@ -2,6 +2,7 @@ package de.dieserfab.buildservermanager.gui.menu.submenus;
 
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
+import de.dieserfab.buildservermanager.gui.menu.MainMenu;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
 import de.dieserfab.buildservermanager.utilities.Logger;
 import de.dieserfab.buildservermanager.utilities.Messages;
@@ -12,8 +13,8 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayersMenu extends AbstractGui {
-    public PlayersMenu() {
-        super(GuiType.BIG_CHEST, Messages.GUIS_MAINMENU_PLAYERS, "playersmenu");
+    public PlayersMenu(GuiType guiType, String title, String name, Player player) {
+        super(guiType, title, name, player);
     }
 
     @Override
@@ -35,12 +36,11 @@ public class PlayersMenu extends AbstractGui {
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         String itemName = itemUsed.getItemMeta().getDisplayName();
         if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERSMENU_BACK)) {
-            BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
+            new MainMenu(AbstractGui.GuiType.SMALL_CHEST, Messages.GUIS_MAINMENU_TITLE, player.getName().toLowerCase() + "_mainmenu", player);
             return;
         }
-        String target = ChatColor.stripColor(itemName);
         try {
-            Player p = Bukkit.getPlayer(target);
+            Player p = Bukkit.getPlayer(ChatColor.stripColor(itemName));
             player.sendMessage(Messages.GUIS_PLAYERSMENU_TELEPORT_SUCCESS.replace("%player%", p.getName()));
             player.teleport(p.getLocation());
         } catch (Exception e) {

@@ -25,9 +25,9 @@ public class VoidWorld extends ChunkGenerator {
 
     @Override
     public Location getFixedSpawnLocation(World world, Random random) {
-        final Location spawnLocation = new Location(world, 0.0D, 64.0D, 0.0D);
-        final Location blockLocation = spawnLocation.clone().subtract(0D, 1D, 0D);
-        blockLocation.getBlock().setType(Material.BEDROCK);
+        Location spawnLocation = new Location(world, 0.0D, 110.0D, 0.0D);
+        Location blockLocation = spawnLocation.clone().subtract(0D, 100D, 0D);
+        blockLocation.getBlock().setType(Material.GLASS);
         return spawnLocation;
     }
 

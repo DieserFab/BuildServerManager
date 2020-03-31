@@ -3,6 +3,8 @@ package de.dieserfab.buildservermanager.commands.cmds;
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.api.BSMAPI;
 import de.dieserfab.buildservermanager.commands.AbstractCommand;
+import de.dieserfab.buildservermanager.gui.AbstractGui;
+import de.dieserfab.buildservermanager.gui.menu.MainMenu;
 import de.dieserfab.buildservermanager.utilities.Messages;
 import de.dieserfab.buildservermanager.utilities.Permissions;
 import org.bukkit.Bukkit;
@@ -40,7 +42,7 @@ public class MapsCMD extends AbstractCommand {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("open")) {
                 if (hasPermission(player, Permissions.COMMAND_MAPS_OPEN))
-                    BSM.getInstance().getGuiManager().getGui("mainmenu").openGui(player);
+                    new MainMenu(AbstractGui.GuiType.SMALL_CHEST, Messages.GUIS_MAINMENU_TITLE, player.getName().toLowerCase() + "_mainmenu", player);
                 return;
             }
             player.sendMessage(Messages.COMMANDS_FAIL_COMMAND);
