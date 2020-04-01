@@ -2,6 +2,7 @@ package de.dieserfab.buildservermanager.gui.menu;
 
 import de.dieserfab.buildservermanager.BSM;
 import de.dieserfab.buildservermanager.api.BSMAPI;
+import de.dieserfab.buildservermanager.data.ProtocolVersion;
 import de.dieserfab.buildservermanager.gui.AbstractGui;
 import de.dieserfab.buildservermanager.gui.menu.submenus.*;
 import de.dieserfab.buildservermanager.mapselector.Map;
@@ -30,13 +31,15 @@ public class MainMenu extends AbstractGui {
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.PAPER, 1, Messages.GUIS_MAINMENU_MAP_SELECTION, Messages.GUIS_MAINMENU_MAP_SELECTION_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, Messages.GUIS_MAINMENU_INFORMATION, Arrays.asList(
                 "§7Plugin Version: §a" + BSM.getInstance().getDescription().getVersion(),
+                "§7Version Interpreter: §a"+ ProtocolVersion.getServerIdentifier(),
                 "§7CPU Cores: §a" + Runtime.getRuntime().availableProcessors(),
                 "§7Available RAM: §a" + FileUtilities.readableFileSize(Runtime.getRuntime().maxMemory()),
                 "§7Map Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
                 "§7All declared Maps Count: §a" + BSMAPI.getInstance().getAllDeclaredMaps().size(),
                 "§7Exempt Map Count: §a" + BSM.getInstance().getConfig().getList("exempt_classify").size(),
                 "§7Unclassified Map Count: §a" + BSMAPI.getInstance().getMapsToClassify().size(),
-                " ")).create());
+                "§7Loaded Map Count: §a"+Bukkit.getWorlds().size(),
+                "")).create());
         setItem(SlotPosition.CHEST_UPPER_RIGHT.getSlot(), BSMAPI.getInstance().getMapsToClassify().isEmpty() ? null : new ItemCreator(GuiHead.ALERT.getId(), 1, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY, Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_BOTTOM_MIDDLE.getSlot(), new ItemCreator(Material.BOOK, 1, "§8§lCurrent Map(§a" + getPlayer().getWorld().getName() + "§8§l)", BSMAPI.getInstance().getMap(getPlayer().getWorld().getName()) == null ? Arrays.asList("§7This Map doesnt allow changing its settings as its", "§7not cached as a map inside the maps.yml file.") : null).create());
     }

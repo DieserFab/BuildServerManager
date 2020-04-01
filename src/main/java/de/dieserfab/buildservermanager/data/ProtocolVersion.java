@@ -27,6 +27,7 @@ public enum ProtocolVersion {
             if (version.getIdentifier().equalsIgnoreCase(protocolVersion)) {
                 Logger.l("iSet the Serverversion to interprete to:" + version.getIdentifier());
                 serverVersion = version.getVersion();
+                serverIdentifier = version.getIdentifier();
                 return version;
             }
         }
@@ -40,6 +41,8 @@ public enum ProtocolVersion {
 
     @Getter
     private static int serverVersion;
+    @Getter
+    private static String serverIdentifier;
     @Getter
     private int version;
     @Getter

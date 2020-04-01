@@ -30,5 +30,7 @@ public class Permissions {
     public static String COMMAND_GAMEMODE_OTHER;
     @LoadPermission(path = "commands.gamemode.self")
     public static String COMMAND_GAMEMODE_SELF;
+    @LoadPermission(path = "commands.difficulty.use")
+    public static String COMMAND_DIFFICULTY_USE;
 
 }

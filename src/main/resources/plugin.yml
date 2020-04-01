@@ -7,3 +7,5 @@ commands:
     aliases: [maps, map, m]
   gamemode:
     aliases: [gamemode, gm]
+  difficulty:
+    aliases: [diff, difficulty]

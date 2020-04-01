@@ -14,6 +14,9 @@ items:
 #
 commands:
   no_permission: '§cYou dont have the permission to use this command.'
+  difficulty:
+    fail_command: '§7Wrong command usage try §a/difficulty <0-3/peaceful|easy|normal|hard>§7.'
+    success: '§7Successfully changed the difficulty in the world §a%world% §7to §a%difficulty%§7.'
   gamemode:
     fail_command: '§7Wrong command usage try §a/gamemode <0-3/survival|creative|adventure|spectator>§7.'
     player_not_found: '§7The player you entered doesnt exist.'
@@ -60,10 +63,6 @@ guis:
     back_lore:
       - '§7Click here to get back to the Main Menu.'
       - ' '
-    gamemode_0: '§7Gamemode Survival'
-    gamemode_1: '§7Gamemode Creative'
-    gamemode_2: '§7Gamemode Adventure'
-    gamemode_3: '§7Gamemode Spectator'
   category_menu:
     back: '§8§lBack to the Domain Menu'
     back_lore:

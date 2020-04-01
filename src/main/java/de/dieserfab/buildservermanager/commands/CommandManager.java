@@ -1,5 +1,6 @@
 package de.dieserfab.buildservermanager.commands;
 
+import de.dieserfab.buildservermanager.commands.cmds.DifficultyCMD;
 import de.dieserfab.buildservermanager.commands.cmds.GamemodeCMD;
 import de.dieserfab.buildservermanager.commands.cmds.MapsCMD;
 import de.dieserfab.buildservermanager.utilities.Logger;
@@ -15,6 +16,7 @@ public class CommandManager {
         try {
             new MapsCMD();
             new GamemodeCMD();
+            new DifficultyCMD();
             Logger.l("iSuccessfully loaded all Commands.");
         }catch (Exception e){
             Logger.l("eError while loading all Commands:"+e.getMessage());

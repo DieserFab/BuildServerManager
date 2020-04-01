@@ -4,6 +4,7 @@ import de.dieserfab.buildservermanager.gui.AbstractGui;
 import de.dieserfab.buildservermanager.gui.menu.MainMenu;
 import de.dieserfab.buildservermanager.utilities.ItemCreator;
 import de.dieserfab.buildservermanager.utilities.Messages;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -15,10 +16,14 @@ public class PlayerUtilitiyMenu extends AbstractGui {
 
     @Override
     public void init() {
-        setItem(10, new ItemCreator(GuiHead.BLACK_0.getId(), 1, Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_0, null).create());
-        setItem(11, new ItemCreator(GuiHead.BLACK_1.getId(), 1, Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_1, null).create());
-        setItem(12, new ItemCreator(GuiHead.BLACK_2.getId(), 1, Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_2, null).create());
-        setItem(13, new ItemCreator(GuiHead.BLACK_3.getId(), 1, Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_3, null).create());
+        setItem(10, new ItemCreator(GuiHead.BLACK_0.getId(), 1, "§7Gamemode Survival", null).create());
+        setItem(11, new ItemCreator(GuiHead.BLACK_1.getId(), 1, "§7Gamemode Creative", null).create());
+        setItem(12, new ItemCreator(GuiHead.BLACK_2.getId(), 1, "§7Gamemode Adventure", null).create());
+        setItem(13, new ItemCreator(GuiHead.BLACK_3.getId(), 1, "§7Gamemode Spectator", null).create());
+        setItem(19, new ItemCreator(GuiHead.PURPLE_P.getId(), 1, "§7Difficulty Peaceful", null).create());
+        setItem(20, new ItemCreator(GuiHead.DIAMOND_E.getId(), 1, "§7Difficulty Easy", null).create());
+        setItem(21, new ItemCreator(GuiHead.QUARZ_N.getId(), 1, "§7Difficulty Normal", null).create());
+        setItem(22, new ItemCreator(GuiHead.BIRCH_H.getId(), 1, "§7Difficulty Hard", null).create());
         setItem(SlotPosition.BIG_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator(GuiHead.LEFT_ARROW.getId(), 1, Messages.GUIS_PLAYERUTILITYMENU_BACK, Messages.GUIS_PLAYERUTILITYMENU_BACK_LORE).create());
     }
 
@@ -34,18 +39,8 @@ public class PlayerUtilitiyMenu extends AbstractGui {
             new MainMenu(AbstractGui.GuiType.SMALL_CHEST, Messages.GUIS_MAINMENU_TITLE, player.getName().toLowerCase() + "_mainmenu", player);
             return;
         }
-        if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_0)) {
-            player.performCommand("gamemode 0");
-        }
-        if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_1)) {
-            player.performCommand("gamemode 1");
-        }
-        if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_2)) {
-            player.performCommand("gamemode 2");
-        }
-        if (itemName.equalsIgnoreCase(Messages.GUIS_PLAYERUTILITYMENU_GAMEMODE_3)) {
-            player.performCommand("gamemode 3");
-        }
+        String command = ChatColor.stripColor(itemName);
+        player.performCommand(command);
     }
 
     @Override

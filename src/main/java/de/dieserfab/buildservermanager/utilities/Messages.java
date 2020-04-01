@@ -55,6 +55,11 @@ public class Messages {
     @LoadMessage(path = "commands.gamemode.player_not_found")
     public static String COMMANDS_GAMEMODE_PLAYER_NOT_FOUND;
 
+    @LoadMessage(path = "commands.difficulty.fail_command")
+    public static String COMMANDS_DIFFICULTY_FAIL_COMMAND;
+    @LoadMessage(path = "commands.difficulty.success")
+    public static String COMMANDS_DIFFICULTY_SUCCESS;
+
     /* Gui Messages*/
     @LoadMessage(path = "guis.gamerule_menu.back")
     public static String GUIS_GAMERULEMENU_BACK;
@@ -71,14 +76,6 @@ public class Messages {
     public static String GUIS_PLAYERUTILITYMENU_BACK;
     @LoadMessage(path = "guis.player_utility_menu.back_lore")
     public static List<String> GUIS_PLAYERUTILITYMENU_BACK_LORE;
-    @LoadMessage(path = "guis.player_utility_menu.gamemode_0")
-    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_0;
-    @LoadMessage(path = "guis.player_utility_menu.gamemode_1")
-    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_1;
-    @LoadMessage(path = "guis.player_utility_menu.gamemode_2")
-    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_2;
-    @LoadMessage(path = "guis.player_utility_menu.gamemode_3")
-    public static String GUIS_PLAYERUTILITYMENU_GAMEMODE_3;
 
     @LoadMessage(path = "guis.category_menu.back")
     public static String GUIS_CATEGORYMENU_BACK;

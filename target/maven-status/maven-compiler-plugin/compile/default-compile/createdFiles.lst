@@ -15,6 +15,7 @@ de\dieserfab\buildservermanager\utilities\StringUtilities.class
 de\dieserfab\buildservermanager\gui\menu\submenus\MapMenu.class
 de\dieserfab\buildservermanager\api\BSMAPI.class
 de\dieserfab\buildservermanager\utilities\ItemCreator.class
+de\dieserfab\buildservermanager\commands\cmds\DifficultyCMD.class
 de\dieserfab\buildservermanager\gui\menu\submenus\PlayerUtilitiyMenu.class
 de\dieserfab\buildservermanager\listener\InteractListener.class
 de\dieserfab\buildservermanager\gui\menu\submenus\CategoryMenu.class

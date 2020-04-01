@@ -27,7 +27,7 @@ public class MapSettingsMenu extends AbstractGui {
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot() + 1, new ItemCreator(GuiHead.UP_ARROW.getId(), 1, Messages.GUIS_MAPSETTINGSMENU_LOAD, Messages.GUIS_MAPSETTINGSMENU_LOAD_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot() + 2, new ItemCreator(GuiHead.DOWN_ARROW.getId(), 1, Messages.GUIS_MAPSETTINGSMENU_UNLOAD, Messages.GUIS_MAPSETTINGSMENU_UNLOAD_LORE).create());
         setItem(SlotPosition.SMALL_CHEST_MIDDLE_RIGHT.getSlot() - 1, new ItemCreator(Material.NAME_TAG, 1, Messages.GUIS_MAPSETTINGSMENU_INFORMATION, Arrays.asList("§7Name: " + ChatColor.stripColor(getTitle()),
-                "§7Disk Space: " + FileUtilities.readableFileSize(FileUtilities.folderSize(new File(ChatColor.stripColor(getTitle()).replaceAll("\\(.*\\)","")))), " ")).create());
+                "§7Disk Space: " + FileUtilities.readableFileSize(FileUtilities.folderSize(new File(ChatColor.stripColor(getTitle()).replaceAll("\\(.*\\)", "")))), " ")).create());
         setItem(SlotPosition.SMALL_CHEST_BOTTOM_LEFT.getSlot(), new ItemCreator(GuiHead.LEFT_ARROW.getId(), 1, Messages.GUIS_MAPSETTINGSMENU_BACK, Messages.GUIS_MAPSETTINGSMENU_BACK_LORE).create());
     }
 
@@ -76,7 +76,11 @@ public class MapSettingsMenu extends AbstractGui {
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_UNLOAD)) {
             try {
-                player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
+                Bukkit.getOnlinePlayers().forEach(p -> {
+                    if (p.getWorld().getName().equalsIgnoreCase(values[2])) {
+                        p.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
+                    }
+                });
                 Bukkit.getServer().unloadWorld(Bukkit.getWorld(ChatColor.stripColor(values[2])), true);
                 player.sendMessage(Messages.GUIS_MAPSETTINGSMENU_UNLOAD_SUCCESS);
                 return;

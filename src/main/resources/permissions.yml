@@ -12,3 +12,5 @@ commands:
   gamemode:
     self: 'bsm.gamemode'
     other: 'bsm.gamemode.other'
+  difficulty:
+    use: 'bsm.difficulty'
