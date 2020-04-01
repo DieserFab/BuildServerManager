@@ -14,6 +14,11 @@ items:
 #
 commands:
   no_permission: '§cYou dont have the permission to use this command.'
+  nightvision:
+    fail_command: '§7Wrong command usage try §a/nightvision [player]§7.'
+    player_not_found: '§7The player you entered doesnt exist.'
+    self: '§7You toggled the §aNightvision§7.'
+    other: '§7You toggled the §aNightvision §7for the player §a%player%§7.'
   difficulty:
     fail_command: '§7Wrong command usage try §a/difficulty <0-3/peaceful|easy|normal|hard>§7.'
     success: '§7Successfully changed the difficulty in the world §a%world% §7to §a%difficulty%§7.'

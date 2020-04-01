@@ -20,6 +20,7 @@ public class PlayerUtilitiyMenu extends AbstractGui {
         setItem(11, new ItemCreator(GuiHead.BLACK_1.getId(), 1, "§7Gamemode Creative", null).create());
         setItem(12, new ItemCreator(GuiHead.BLACK_2.getId(), 1, "§7Gamemode Adventure", null).create());
         setItem(13, new ItemCreator(GuiHead.BLACK_3.getId(), 1, "§7Gamemode Spectator", null).create());
+        setItem(16, new ItemCreator(GuiHead.EYE_OF_ENDER.getId(), 1, "§dNightvision", null).create());
         setItem(19, new ItemCreator(GuiHead.PURPLE_P.getId(), 1, "§7Difficulty Peaceful", null).create());
         setItem(20, new ItemCreator(GuiHead.DIAMOND_E.getId(), 1, "§7Difficulty Easy", null).create());
         setItem(21, new ItemCreator(GuiHead.QUARZ_N.getId(), 1, "§7Difficulty Normal", null).create());

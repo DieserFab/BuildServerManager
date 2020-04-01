@@ -32,5 +32,9 @@ public class Permissions {
     public static String COMMAND_GAMEMODE_SELF;
     @LoadPermission(path = "commands.difficulty.use")
     public static String COMMAND_DIFFICULTY_USE;
+    @LoadPermission(path = "commands.nightvision.self")
+    public static String COMMAND_NIGHTVISION_SELF;
+    @LoadPermission(path = "commands.nightvision.other")
+    public static String COMMAND_NIGHTVISION_OTHER;
 
 }

@@ -32,6 +32,7 @@ de\dieserfab\buildservermanager\mapselector\Category.class
 de\dieserfab\buildservermanager\gui\menu\MainMenu.class
 de\dieserfab\buildservermanager\commands\cmds\MapsCMD.class
 de\dieserfab\buildservermanager\utilities\FileUtilities.class
+de\dieserfab\buildservermanager\commands\cmds\NightvisionCMD.class
 de\dieserfab\buildservermanager\gui\menu\submenus\DomainMenu.class
 de\dieserfab\buildservermanager\mapselector\DomainManager.class
 de\dieserfab\buildservermanager\config\configs\PermissionsConfig.class

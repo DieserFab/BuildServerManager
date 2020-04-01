@@ -60,6 +60,15 @@ public class Messages {
     @LoadMessage(path = "commands.difficulty.success")
     public static String COMMANDS_DIFFICULTY_SUCCESS;
 
+    @LoadMessage(path = "commands.nightvision.self")
+    public static String COMMANDS_NIGHTVISION_SELF;
+    @LoadMessage(path = "commands.nightvision.other")
+    public static String COMMANDS_NIGHTVISION_OTHER;
+    @LoadMessage(path = "commands.nightvision.player_not_online")
+    public static String COMMANDS_NIGHTVISION_PLAYER_NOT_ONLINE;
+    @LoadMessage(path = "commands.nightvision.fail_command")
+    public static String COMMANDS_NIGHTVISION_FAIL_COMMAND;
+
     /* Gui Messages*/
     @LoadMessage(path = "guis.gamerule_menu.back")
     public static String GUIS_GAMERULEMENU_BACK;

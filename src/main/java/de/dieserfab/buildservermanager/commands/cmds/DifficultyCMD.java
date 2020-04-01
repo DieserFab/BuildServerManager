@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.libs.org.apache.commons.lang3.EnumUtils;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class DifficultyCMD extends AbstractCommand {
@@ -40,6 +41,9 @@ public class DifficultyCMD extends AbstractCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
+        if (strings.length == 1) {
+            return intelligentTabComplete(Arrays.asList("survival", "creative", "adventure", "spectator"), strings[0]);
+        }
         return null;
     }
 }
