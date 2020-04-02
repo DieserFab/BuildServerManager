@@ -30,7 +30,6 @@ public class PlayerUtilitiyMenu extends AbstractGui {
 
     @Override
     public void onGuiOpen(Player player) {
-
     }
 
     @Override
