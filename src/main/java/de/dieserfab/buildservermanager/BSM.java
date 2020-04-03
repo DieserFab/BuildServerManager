@@ -10,7 +10,7 @@ import de.dieserfab.buildservermanager.listener.GuiListener;
 import de.dieserfab.buildservermanager.listener.InteractListener;
 import de.dieserfab.buildservermanager.mapselector.DomainManager;
 import de.dieserfab.buildservermanager.utilities.Logger;
-import de.dieserfab.buildservermanager.utilities.Metrics;
+import de.dieserfab.buildservermanager.utilities.MetricsLite;
 import de.dieserfab.buildservermanager.utilities.chunkgenerator.VoidWorld;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -46,7 +46,7 @@ public class BSM extends JavaPlugin {
     @Override
     public void onLoad() {
         new Logger();
-        new Metrics(this,6976);
+        new MetricsLite(this,6976);
     }
 
     public void loadModules() {
