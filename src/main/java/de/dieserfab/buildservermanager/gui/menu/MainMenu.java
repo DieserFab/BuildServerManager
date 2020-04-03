@@ -52,22 +52,22 @@ public class MainMenu extends AbstractGui {
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         String itemName = itemUsed.getItemMeta().getDisplayName();
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAINMENU_MAP_SELECTION)) {
-            new DomainMenu(GuiType.SMALL_CHEST, "§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)", player.getName().toLowerCase() + "$domainmenu", player);
+            new DomainMenu(GuiType.SMALL_CHEST, "§8§lDomain Menu (§a" + BSMAPI.getInstance().getDomains().size() + "§8§l)", player.getName().toLowerCase() + " domainmenu", player);
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAINMENU_PLAYERS)) {
-            new PlayersMenu(GuiType.BIG_CHEST, Messages.GUIS_MAINMENU_PLAYERS, player.getName().toLowerCase() + "$playersmenu", player);
+            new PlayersMenu(GuiType.BIG_CHEST, Messages.GUIS_MAINMENU_PLAYERS, player.getName().toLowerCase() + " playersmenu", player);
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAINMENU_PLAYER_UTILITY)) {
-            new PlayerUtilitiyMenu(GuiType.BIG_CHEST, Messages.GUIS_MAINMENU_PLAYER_UTILITY, player.getName().toLowerCase() + "$playerutilitymenu", player);
+            new PlayerUtilitiyMenu(GuiType.BIG_CHEST, Messages.GUIS_MAINMENU_PLAYER_UTILITY, player.getName().toLowerCase() + " playerutilitymenu", player);
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAINMENU_MAPS_TO_CLASSIFY)) {
-            new ClassifyMenu(GuiType.BIG_CHEST, Messages.GUIS_CLASSIFYMENU_TITLE, player.getName().toLowerCase() + "$classifymenu", player);
+            new ClassifyMenu(GuiType.BIG_CHEST, Messages.GUIS_CLASSIFYMENU_TITLE, player.getName().toLowerCase() + " classifymenu", player);
         }
         String currentMap = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
         if (currentMap.equalsIgnoreCase("Current Map")) {
             Map map = BSMAPI.getInstance().getMap(getPlayer().getWorld().getName());
             if (map != null) {
-                new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + getPlayer().getWorld().getName() + "§8(§aloaded§8)", map.getDomain()+ "$" + map.getCategory() + "$" + map.getName(), player);
+                new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + getPlayer().getWorld().getName() + "§8(§aloaded§8)", map.getDomain()+ " " + map.getCategory() + " " + map.getName(), player);
             }
         }
     }

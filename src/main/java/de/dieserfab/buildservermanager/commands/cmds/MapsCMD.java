@@ -111,20 +111,39 @@ public class MapsCMD extends AbstractCommand {
     public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
         Player player = (Player) commandSender;
         if (strings.length == 1) {
-            return Arrays.asList("open", "tp", "addDomain", "removeDomain", "addCategory", "removeCategory", "addMap", "removeMap");
+            return intelligentTabComplete(Arrays.asList("open", "tp", "addDomain", "removeDomain", "addCategory", "removeCategory", "addMap", "removeMap"), strings[0]);
         }
         if (strings.length == 2) {
             if (strings[0].equalsIgnoreCase("tp")) {
                 List<String> worlds = new ArrayList<>();
                 Bukkit.getWorlds().forEach(world -> worlds.add(world.getName()));
-                return worlds;
+                return intelligentTabComplete(worlds,strings[1]);
+            }
+            if(strings[0].equalsIgnoreCase("addCategory")||strings[0].equalsIgnoreCase("addMap")||strings[0].equalsIgnoreCase("removeDomain")||strings[0].equalsIgnoreCase("removeCategory")||strings[0].equalsIgnoreCase("removeMap")){
+                List<String> domains = new ArrayList<>();
+                BSMAPI.getInstance().getDomains().forEach(domain -> domains.add(domain.getName()));
+                return intelligentTabComplete(domains,strings[1]);
+            }
+        }
+        if(strings.length == 3){
+            if(strings[0].equalsIgnoreCase("addMap")||strings[0].equalsIgnoreCase("removeMap")||strings[0].equalsIgnoreCase("removeCategory")){
+                List<String> categories = new ArrayList<>();
+                BSMAPI.getInstance().getCategories(strings[1]).forEach(category -> categories.add(category.getName()));
+                return intelligentTabComplete(categories,strings[2]);
+            }
+        }
+        if(strings.length == 4){
+            if(strings[0].equalsIgnoreCase("removeMap")){
+                List<String> maps = new ArrayList<>();
+                BSMAPI.getInstance().getMaps(strings[1],strings[2]).forEach(map -> maps.add(map.getName()));
+                return intelligentTabComplete(maps,strings[3]);
             }
         }
         if (strings.length == 5) {
             if (strings[0].equalsIgnoreCase("addMap")) {
-                return Arrays.asList("normal", "nether", "end", "void");
+                return intelligentTabComplete(Arrays.asList("normal", "nether", "end", "void"),strings[4]);
             }
         }
-        return Arrays.asList(" ");
+        return Arrays.asList("");
     }
 }

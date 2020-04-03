@@ -51,7 +51,7 @@ public class CategoryMenu extends AbstractGui {
             return;
         }
         String category = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
-        new MapMenu(GuiType.BIG_CHEST, "§8§l" + category + " (§a" + BSMAPI.getInstance().getMaps(getName(), category).size() + "§8§l)", getName() + "$" + category, player);
+        new MapMenu(GuiType.BIG_CHEST, "§8§l" + category + " (§a" + BSMAPI.getInstance().getMaps(getName(), category).size() + "§8§l)", getName() + " " + category, player);
 
     }
 

@@ -39,8 +39,9 @@ public class ClassifyMenu extends AbstractGui {
                     count++;
                 }
                 if (BSMAPI.getInstance().getDomains().isEmpty()) {
-                    setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.BARRIER, 1, Messages.GUIS_DOMAINMENU_NO_DOMAIN, Messages.GUIS_DOMAINMENU_NO_DOMAIN_LORE).create());
+                    setItem(40, new ItemCreator(Material.BARRIER, 1, Messages.GUIS_DOMAINMENU_NO_DOMAIN, Messages.GUIS_DOMAINMENU_NO_DOMAIN_LORE).create());
                 } else {
+                    setItem(40, null);
                     setItem(SlotPosition.BIG_CHEST_BOTTOM_RIGHT.getSlot(), new ItemCreator(Material.EMERALD_BLOCK, 1, Messages.GUIS_DOMAINMENU_CREATE_DOMAIN, Messages.GUIS_DOMAINMENU_CREATE_DOMAIN_LORE).create());
                 }
                 break;
@@ -51,8 +52,9 @@ public class ClassifyMenu extends AbstractGui {
                     count++;
                 }
                 if (BSMAPI.getInstance().getCategories(ChatColor.stripColor(parts[1])).isEmpty()) {
-                    setItem(SlotPosition.SMALL_CHEST_MIDDLE.getSlot(), new ItemCreator(Material.BARRIER, 1, Messages.GUIS_CATEGORYMENU_NO_CATEGORY, Messages.GUIS_CATEGORYMENU_NO_CATEGORY_LORE).create());
+                    setItem(40, new ItemCreator(Material.BARRIER, 1, Messages.GUIS_CATEGORYMENU_NO_CATEGORY, Messages.GUIS_CATEGORYMENU_NO_CATEGORY_LORE).create());
                 } else {
+                    setItem(40, null);
                     setItem(SlotPosition.BIG_CHEST_BOTTOM_RIGHT.getSlot(), new ItemCreator(Material.EMERALD_BLOCK, 1, Messages.GUIS_CATEGORYMENU_CREATE_CATEGORY, Messages.GUIS_CATEGORYMENU_CREATE_CATEGORY_LORE).create());
                 }
                 break;

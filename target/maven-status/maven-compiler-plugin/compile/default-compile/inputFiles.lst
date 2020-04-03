@@ -1,6 +1,7 @@
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\config\configs\MapsConfig.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\listener\GuiListener.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\gui\menu\submenus\DomainMenu.java
+A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\cmds\DifficultyCMD.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\gui\menu\submenus\GameRuleMenu.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\CommandManager.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\config\configs\MessagesConfig.java
@@ -21,6 +22,7 @@ A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildser
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\mapselector\Map.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\utilities\chunkgenerator\VoidWorld.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\api\BSMAPI.java
+A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\cmds\NightvisionCMD.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\cmds\MapsCMD.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\data\ProtocolVersion.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\gui\menu\MainMenu.java

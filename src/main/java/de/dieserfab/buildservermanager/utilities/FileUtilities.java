@@ -30,6 +30,8 @@ public class FileUtilities {
     public static long folderSize(File folder) {
         long size = 0;
         File[] fileList = folder.listFiles();
+        if(fileList == null)
+            return 0;
         for (File file : fileList) {
             if (!file.isFile()) {
                 size += folderSize(file);

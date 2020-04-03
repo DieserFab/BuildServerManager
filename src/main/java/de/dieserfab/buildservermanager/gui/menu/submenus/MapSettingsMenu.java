@@ -39,21 +39,21 @@ public class MapSettingsMenu extends AbstractGui {
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         String itemName = itemUsed.getItemMeta().getDisplayName();
-        String[] values = getName().split("\\$");
+        String[] values = getName().split(" ");
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_BACK)) {
-            new MapMenu(GuiType.BIG_CHEST, "§8§l" + values[1] + " (§a" + BSMAPI.getInstance().getMaps(values[0], values[1]).size() + "§8§l)", values[0] + "$" + values[1], player);
+            new MapMenu(GuiType.BIG_CHEST, "§8§l" + values[1] + " (§a" + BSMAPI.getInstance().getMaps(values[0], values[1]).size() + "§8§l)", values[0] + " " + values[1], player);
             return;
         }
 
         if (clickType == ClickType.CONTROL_DROP) {
             if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_DELETE)) {
                 player.performCommand("maps removeMap " + values[0] + " " + values[1] + " " + values[2]);
-                new MapMenu(GuiType.BIG_CHEST, "§8§l" + values[1] + " (§a" + BSMAPI.getInstance().getMaps(values[0], values[1]).size() + "§8§l)", values[0] + "$" + values[1], player);
+                new MapMenu(GuiType.BIG_CHEST, "§8§l" + values[1] + " (§a" + BSMAPI.getInstance().getMaps(values[0], values[1]).size() + "§8§l)", values[0] + " " + values[1], player);
                 return;
             }
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_GAMERULE_MENU)) {
-            new GameRuleMenu(GuiType.BIG_CHEST, Messages.GUIS_MAPSETTINGSMENU_GAMERULE_MENU, values[2], player);
+            new GameRuleMenu(GuiType.BIG_CHEST, Messages.GUIS_MAPSETTINGSMENU_GAMERULE_MENU,getName(), player);
             return;
         }
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPSETTINGSMENU_LOAD)) {

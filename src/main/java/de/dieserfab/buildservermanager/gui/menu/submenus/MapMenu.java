@@ -24,7 +24,7 @@ public class MapMenu extends AbstractGui {
     @Override
     public void init() {
         BSMAPI api = BSMAPI.getInstance();
-        String[] strings = getName().split("\\$");
+        String[] strings = getName().split(" ");
         if (!api.getMaps(strings[0], strings[1]).isEmpty()) {
             int count = 0;
             for (Map map : api.getMaps(strings[0], strings[1])) {
@@ -47,7 +47,7 @@ public class MapMenu extends AbstractGui {
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
         String itemName = itemUsed.getItemMeta().getDisplayName();
-        String[] strings = getName().split("\\$");
+        String[] strings = getName().split(" ");
         if (itemName.equalsIgnoreCase(Messages.GUIS_MAPMENU_BACK)) {
             new CategoryMenu(GuiType.SMALL_CHEST, "§8§l" + strings[0] + " (§a" + BSMAPI.getInstance().getCategories(strings[0]).size() + "§8§l)", strings[0], player);
             return;
@@ -75,7 +75,7 @@ public class MapMenu extends AbstractGui {
         if (clickType == ClickType.RIGHT) {
             String map = ChatColor.stripColor(itemName).replaceAll("\\(.*\\)", "");
             new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + map + String.valueOf(Bukkit.getWorld(map) == null).replaceAll("true", "§8(§cnot loaded§8)").replaceAll("false", "§8(§aloaded§8)"),
-                    getName() + "$" + map, player);
+                    getName() + " " + map, player);
         }
     }
 
@@ -83,7 +83,7 @@ public class MapMenu extends AbstractGui {
     public boolean onPlayerChat(Player player, String message) {
         if (isListenForChat()) {
             String[] strings = message.split(" ");
-            String[] values = getName().split("\\$");
+            String[] values = getName().split(" ");
             if (strings.length != 2) {
                 player.sendMessage(Messages.GUIS_MAPMENU_WRONG_USAGE);
                 return true;

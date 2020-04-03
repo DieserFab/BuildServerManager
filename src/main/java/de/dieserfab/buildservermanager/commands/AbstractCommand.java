@@ -22,14 +22,14 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
     }
 
     public List<String> intelligentTabComplete(List<String> possibillities, String current) {
-        if(current.isEmpty())
+        if(current.isEmpty()||possibillities.isEmpty())
             return possibillities;
         List<String> out = new ArrayList<>();
-        char first = current.charAt(0);
         for (String string : possibillities) {
-            if (string.charAt(0) == first) {
+            String var1 = string.toLowerCase();
+            String var2 = current.toLowerCase();
+            if(var1.contains(var2))
                 out.add(string);
-            }
         }
         return out;
     }

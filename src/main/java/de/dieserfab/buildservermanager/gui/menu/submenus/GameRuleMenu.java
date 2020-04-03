@@ -22,9 +22,7 @@ public class GameRuleMenu extends AbstractGui {
     @Override
     public void init() {
         int count = 0;
-        System.out.println(getName());
-        String[] values = getName().split("\\$");
-        Arrays.stream(values).forEach(m -> System.out.println(m));
+        String[] values = getName().split(" ");
         World world = Bukkit.getWorld(values[2]);
         for (GameRule gameRule : GameRule.values()) {
             if (gameRule.getType() == Integer.class) {
@@ -45,7 +43,7 @@ public class GameRuleMenu extends AbstractGui {
 
     @Override
     public void onGuiUse(Player player, ItemStack itemUsed, ClickType clickType) {
-        String[] values = getName().split("\\$");
+        String[] values = getName().split(" ");
         if (itemUsed.getItemMeta().getDisplayName().equalsIgnoreCase(Messages.GUIS_GAMERULEMENU_BACK)) {
             new MapSettingsMenu(GuiType.SMALL_CHEST, "§8§l" + values[2] + Bukkit.getWorld(values[2]) == null ? "§8(§cnot loaded§8)" : "§8(§aloaded§8)", getName(), player);
             return;
@@ -67,7 +65,7 @@ public class GameRuleMenu extends AbstractGui {
     @Override
     public boolean onPlayerChat(Player player, String message) {
         if (isListenForChat()) {
-            String[] values = getName().split("\\$");
+            String[] values = getName().split(" ");
             World world = Bukkit.getWorld(values[2]);
             String[] strings = message.split(" ");
             if (strings.length != 1 || !StringUtilities.isStringNumeric(strings[0])) {
