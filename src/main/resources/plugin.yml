@@ -10,3 +10,4 @@ commands:
   difficulty:
     aliases: [diff, difficulty]
   nightvision:
+    aliases: [nv, nightvision]

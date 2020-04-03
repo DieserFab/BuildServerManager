@@ -11,6 +11,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -192,6 +193,10 @@ public class BSMAPI {
     public boolean addMap(String domain, String category, String name, String type) {
         MapsConfig mapsConfig = BSM.getInstance().getConfigManager().getMapsConfig();
         FileConfiguration config = mapsConfig.getConfig();
+        if (getMap(name) != null) {
+            Logger.l("eFailed to add a map with the name " + name + " the name for the map already exists");
+            return false;
+        }
         String path = "domains." + domain.toLowerCase() + ".categories." + category.toLowerCase() + ".maps." + name.toLowerCase();
         if (config.isConfigurationSection("domains." + domain.toLowerCase())) {
             if (config.isConfigurationSection("domains." + domain.toLowerCase() + ".categories." + category.toLowerCase())) {
@@ -199,14 +204,13 @@ public class BSMAPI {
                     Logger.l("eFailed to add a map to the domain " + domain + " with the category " + category + " a map with the name " + name + " already exists");
                     return false;
                 }
-                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type, domain, category));
-                config.set(path + ".displayname", name);
-                config.set(path + ".type", type);
-                mapsConfig.save();
 
                 try {
                     WorldCreator creator;
                     switch (type.toLowerCase()) {
+                        case "flat":
+                            creator = new WorldCreator(name).type(WorldType.FLAT);
+                            break;
                         case "void":
                             creator = new WorldCreator(name).generator(BSM.getInstance().getDefaultWorldGenerator(null, null));
                             break;
@@ -235,6 +239,10 @@ public class BSMAPI {
                     Logger.l("eError while creating the world:" + e.getMessage());
                     return false;
                 }
+                BSM.getInstance().getDomainManager().getDomain(domain).getCategory(category).getMaps().add(new Map(name, type, domain, category));
+                config.set(path + ".displayname", name);
+                config.set(path + ".type", type);
+                mapsConfig.save();
                 return true;
             }
             Logger.l("eFailed to add a map to the domain " + domain + " the domain doesnt have a category with the name " + category);

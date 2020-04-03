@@ -31,6 +31,7 @@ A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildser
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\data\DataManager.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\gui\menu\submenus\MapSettingsMenu.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\mapselector\DomainManager.java
+A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\utilities\Metrics.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\config\Config.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\commands\cmds\GamemodeCMD.java
 A:\Developement\Minecraft\BuildServerManager\src\main\java\de\dieserfab\buildservermanager\config\configs\PermissionsConfig.java

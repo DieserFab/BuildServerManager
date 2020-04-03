@@ -141,7 +141,7 @@ public class MapsCMD extends AbstractCommand {
         }
         if (strings.length == 5) {
             if (strings[0].equalsIgnoreCase("addMap")) {
-                return intelligentTabComplete(Arrays.asList("normal", "nether", "end", "void"),strings[4]);
+                return intelligentTabComplete(Arrays.asList("normal", "nether", "end", "void","flat"),strings[4]);
             }
         }
         return Arrays.asList("");

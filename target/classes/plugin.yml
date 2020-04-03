@@ -1,5 +1,5 @@
 name: BuildServerManager
-version: 1.4.0
+version: 1.4.1
 main: de.dieserfab.buildservermanager.BSM
 author: DieserFab
 commands:
@@ -10,3 +10,4 @@ commands:
   difficulty:
     aliases: [diff, difficulty]
   nightvision:
+    aliases: [nv, nightvision]

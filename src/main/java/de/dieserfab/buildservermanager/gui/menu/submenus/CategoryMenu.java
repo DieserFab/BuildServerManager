@@ -64,11 +64,6 @@ public class CategoryMenu extends AbstractGui {
                 return true;
             }
             String domain = ChatColor.stripColor(getTitle()).replaceAll("\\(.*\\)", "").replaceAll(" ", "");
-            System.out.println("AA" + domain + "AA");
-            System.out.println("AA" + strings[0] + "AA");
-            System.out.println("maps addCategory " + domain + " " + strings[0]);
-            System.out.println(BSM.getInstance().getDomainManager().getDomain(domain) == null);
-            System.out.println(BSM.getInstance().getDomainManager().getDomain(domain).getCategories() == null);
             player.performCommand("maps addCategory " + domain + " " + strings[0]);
             setListenForChat(false);
             return true;

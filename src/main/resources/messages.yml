@@ -110,7 +110,7 @@ guis:
       - '§aClick here to create a new Map.'
       - ' '
     wrong_usage: '§7Wrong arguments the §amap §7must consist of the following: §a<name> <void/nether/end/normal>§7.'
-    create_msg: '§7Type the desired §aname §7for the §amap §7(you cant use spaces in the name):'
+    create_msg: '§7Type the desired §aname §7for the §amap §7followed by the generator(you cant use spaces in the name):'
     no_map: '§cTheres no Map to choose from.'
     no_map_lore:
       - '§7To create a Map you can either §aleftclick §7this'
